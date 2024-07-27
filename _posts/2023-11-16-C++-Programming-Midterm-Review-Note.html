@@ -1,0 +1,246 @@
+---
+title: "C/C++ Programming Midterm Review Note"
+tags:
+- C++
+- Review Note
+excerpt: "Midterm review note for CS205 C/C++ Programming"
+---
+
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1 Compile and Run</title>
+<!--Generated on Sat Jul 27 19:53:19 2024 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Compile and Run</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C:
+</p>
+<ul id="S1.I1" class="ltx_itemize">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Compile: gcc -c hello.c</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Link: gcc hello.o -o hello</p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Run: ./hello</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++:</p>
+<ul id="S1.I2" class="ltx_itemize">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Compile: g++ -c hello.cpp</p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Link: g++ -o hello hello.o</p>
+</div>
+</li>
+<li id="S1.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Run: ./hello</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="Sx1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">“sizeof()” Function</h2>
+
+<div id="Sx1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you use “sizeof()” function on an array, it will return the size of the whole array in bytes.
+For example, if we have int A[2][3], then sizeof(A) will return 24, sizeof(A[0]) will return 12, and sizeof(A[0][0]) will return 4.</p>
+</div>
+<div id="Sx1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you use “sizeof()” function on a string type variable, it will always return 32.</p>
+</div>
+<div id="Sx1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you use “sizeof()” function on a pointer, it will return the size of the pointer itself, which is 8 bytes on a 64-bit machine.</p>
+</div>
+</section>
+<section id="Sx2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Input a String</h2>
+
+<div id="Sx2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When input a string in C, we don’t write “&amp;” before the string variable.
+For example, we write “scanf("%s", str);” instead of “scanf("%s", &amp;str);”.</p>
+</div>
+<div id="Sx2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C, to input a whole line, we use “gets(str);” instead of “scanf("%s", str);”.
+And we can use “puts(str);” to output a char array.
+Note: it is a must to add a null character “\0” at the end of the char array or will cause unexpected behavior.</p>
+</div>
+<div id="Sx2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, there are two ways to input a whole line as a char array.
+We can use “cin.get()” to input a whole line, and use “cout” to output a string.
+“cin.get()” takes two parameters, the first one is the char array, and the second one is the maximum length of the char array.
+However, if the input exceeds the maximum length, it will only read (maximum length - 1) characters and leave the last one as “\0”.
+We often use a no parameter version of “cin.get()” to read a linebreak character, so that the next input will not be skipped.</p>
+</div>
+<div id="Sx2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can also use “cin.getline()” to input a whole line, and use “cout” to output a string.
+“cin.getline()” takes two parameters, the first one is the char array, and the second one is the maximum length of the char array.
+It behaves the same as “cin.get()” when the input exceeds the maximum length.
+But it behaves differently from “cin.get()” when countering a linebreak character.
+“cin.getline()” will read the linebreak character and discard it, so that the next input will not be skipped.</p>
+</div>
+<div id="Sx2.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, if we want to input a whole line as a string, we can use “getline(cin, str);”.
+It will read the whole line and discard the linebreak character, so that the next input will not be skipped.</p>
+</div>
+</section>
+<section id="Sx3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Pointers</h2>
+
+<div id="Sx3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C, we use “%p” to print the address of a variable.
+In C++, if you want to print the address of a string or a char, you need to cast it to “void *” first.
+</p>
+</div>
+<div id="Sx3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you want to define a pointer to a two-dimensional array, you need to use “int (*p)[3];” instead of “int *p[3];”.
+And you traverse the array by using “p[i][j]” instead of “p[i * 3 + j]”.</p>
+</div>
+<div id="Sx3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">A pointer that points to a function is called a function pointer.
+For example, we can define a function pointer “int (*p)(int, int);”.
+And we assign a function to it by “p = add;”.
+Then we can use “p(1, 2);” to call the function.</p>
+</div>
+</section>
+<section id="Sx4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Memory Allocation</h2>
+
+<div id="Sx4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C, we have 4 functions to allocate memory:</p>
+<ul id="Sx4.I3" class="ltx_itemize">
+<li id="Sx4.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">void *malloc(int num) - allocates an array of num bytes and returns a pointer to the first element of the array.</p>
+</div>
+</li>
+<li id="Sx4.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">void *calloc(int num, int size) - allocates an array of num elements each of which size in bytes will be size, all bytes in the array will be initialized to 0.</p>
+</div>
+</li>
+<li id="Sx4.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">void *realloc(void *ptr, int new_size) - re-allocates memory extending it upto new_size.</p>
+</div>
+</li>
+<li id="Sx4.I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I3.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">void free(void *ptr) - deallocates the memory previously allocated by a call to calloc, malloc, or realloc.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="Sx4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">For example, if you want to allocate memory for an array of 10 integers, you can use “int *p = (int *)malloc(10 * sizeof(int));”.
+And use “free(p);” to deallocate the memory.</p>
+</div>
+<div id="Sx4.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, we have 2 functions to allocate memory:</p>
+<ul id="Sx4.I4" class="ltx_itemize">
+<li id="Sx4.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I4.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">new - allocates memory at runtime.</p>
+</div>
+</li>
+<li id="Sx4.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I4.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">delete - deallocates memory at runtime.
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="Sx4.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">For example, if you want to allocate memory for an array of 10 integers, you can use “int *p = new int[10];”.
+And use “delete [] p;” to deallocate the memory.</p>
+</div>
+</section>
+<section id="Sx5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Templates</h2>
+
+<div id="Sx5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, we can use templates to create generic functions and classes.
+For example, we can use “template <math id="Sx5.p1.m1" class="ltx_Math" alttext="&lt;" display="inline"><mo>&lt;</mo></math>typename T<math id="Sx5.p1.m2" class="ltx_Math" alttext="&gt;" display="inline"><mo>&gt;</mo></math> void swap(T &amp;a, T &amp;b)”.
+You instantiate a template by providing a type explicitly or implicitly, like “template void swap<math id="Sx5.p1.m3" class="ltx_Math" alttext="&lt;" display="inline"><mo>&lt;</mo></math>int<math id="Sx5.p1.m4" class="ltx_Math" alttext="&gt;" display="inline"><mo>&gt;</mo></math>(int &amp;a, int &amp;b)”.
+If you want to specify the function for a specific type, you can use “template <math id="Sx5.p1.m5" class="ltx_Math" alttext="&lt;&gt;" display="inline"><mrow><mi></mi><mo>&lt;</mo><mo>&gt;</mo></mrow></math>”.</p>
+</div>
+</section>
+<section id="Sx6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Enum Type</h2>
+
+<div id="Sx6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, we can use “enum” to define a new type.
+For example, we can use “enum color {red, green, blue};” to define a new type “color”.
+And we can use “color c = red;” to define a variable of type “color”.
+Also, “color c = (color)1;” and “color c = color(1);” are both valid.</p>
+</div>
+</section>
+<section id="Sx7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">File I/O</h2>
+
+<div id="Sx7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We use “#include<math id="Sx7.p1.m1" class="ltx_Math" alttext="&lt;" display="inline"><mo>&lt;</mo></math>fstream<math id="Sx7.p1.m2" class="ltx_Math" alttext="&gt;" display="inline"><mo>&gt;</mo></math>” to include the file I/O library.</p>
+</div>
+<div id="Sx7.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">We use “ofstream” to create a file output stream, “ifstream” to create a file input stream, and “fstream” to create a file input/output stream.</p>
+</div>
+<div id="Sx7.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Then we associate the stream with a file by using “open()”.
+Especially for “fstream”, we need to specify the mode of the file, like “ios::in” for input, “ios::out” for output.</p>
+</div>
+<div id="Sx7.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Then we check if the file is opened successfully by using “is_open()”.</p>
+</div>
+<div id="Sx7.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">After that, we can use “<math id="Sx7.p5.m1" class="ltx_Math" alttext="&lt;&lt;" display="inline"><mo mathvariant="italic">&lt;&lt;</mo></math>” to write to the file, and “<math id="Sx7.p5.m2" class="ltx_Math" alttext="&gt;&gt;" display="inline"><mo mathvariant="italic">&gt;&gt;</mo></math>” to read from the file.
+We can check if we have reached the end of the file by using “eof()”.</p>
+</div>
+<div id="Sx7.p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">Finally, we use “close()” to close the file.</p>
+</div>
+</section>
+</article>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1343 @@
+---
+title: "Principles of Database Systems (H) Final Review Note"
+tags:
+- Database
+- Review Note
+excerpt: "Final review note for CS213 Principles of Database Systems (H)"
+---
+
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1 Lecture 1</title>
+<!--Generated on Sat Jul 27 20:46:24 2024 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Lecture 1</h2>
+
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Definition of Database</h3>
+
+<div id="S1.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A <span class="ltx_text ltx_font_bold">relational database</span> is based on the relational model of data.
+It organizes data into one or more tables (or "relations") of columns and rows.
+Rows are also called records or tuples.
+Columns are also called attributes or fields.
+<span class="ltx_text ltx_font_italic">(The word “relational” here indicates the data in one row are related.)</span></p>
+</div>
+</section>
+<section id="S1.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.2 </span>Keys</h3>
+
+<div id="S1.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The order of the columns is not important.
+What is important is that the data in one row are related, and correspond to the header of the column.</p>
+</div>
+<div id="S1.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The database don’t want to have duplicate rows, since it is a waste of space and will give us incorrect results when we query the database.
+If we want to have no duplicate rows, we need to identify what makes a row unique, which is called a <span class="ltx_text ltx_font_bold">key</span>.
+There might be different keys available in a table, but we need to choose one of them to be the <span class="ltx_text ltx_font_bold">primary key</span>.</p>
+</div>
+</section>
+<section id="S1.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.3 </span>Normalization</h3>
+
+<section id="S1.SS3.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.3.1 </span>ER Diagram</h4>
+
+<div id="S1.SS3.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a database model, an <span class="ltx_text ltx_font_bold">entity</span> is a something that has a life of its own.
+<span class="ltx_text ltx_font_bold">Relation</span> connects two or more entities, it has no life of its own.</p>
+</div>
+<div id="S1.SS3.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">An <span class="ltx_text ltx_font_bold">ER diagram</span> is a graphical representation of entities and their relationships to each other.
+The <span class="ltx_text ltx_font_bold">cardinality</span> of a relationship is the number of entities that can be involved in a relationship.
+</p>
+<ul id="S1.I1" class="ltx_itemize">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">(1:n): one to many</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">(0:n): zero to many</p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">(m,n): many to many</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S1.SS3.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.3.2 </span>First Normal Form (1NF)</h4>
+
+<div id="S1.SS3.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The first normal form (1NF) is that each column should contain only one value. (atomic values)
+A violation example:</p>
+<table class="ltx_tabular ltx_centering ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Student ID</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Name</span></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t">1</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">John Smith</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Name should be split into first name and last name.</span></p>
+</div>
+</section>
+<section id="S1.SS3.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.3.3 </span>Second Normal Form (2NF)</h4>
+
+<div id="S1.SS3.SSS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The second normal form (2NF) is that each column should be dependent on the entire primary key, not just one part of it.
+A violation example:
+</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Student ID</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Course ID</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Course Name</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t">1</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">1</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">Database Systems</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The course name is dependent on course ID, not student ID.</span></p>
+</div>
+</section>
+<section id="S1.SS3.SSS4" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.3.4 </span>Third Normal Form (3NF)</h4>
+
+<div id="S1.SS3.SSS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The third normal form (3NF) is that each column should be dependent on the primary key, not on another column.
+A violation example:</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Student ID</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Course ID</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Course Name</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">Course Instructor</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b ltx_border_l ltx_border_r ltx_border_t">1</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b ltx_border_r ltx_border_t">1</th>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">Database Systems</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">John Smith</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The course instructor is dependent on course name. It has nothing to do with primary key.</span>
+</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Lecture 2</h2>
+
+<section id="S2.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.1 </span>SQL</h3>
+
+<div id="S2.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A good database language should be good at dealing with data and containers.</p>
+</div>
+<section id="S2.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.1.1 </span>Data Definition Language (DDL)</h4>
+
+<div id="S2.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The data definition language (DDL) deals with tables or other database objects.</p>
+</div>
+<div id="S2.SS1.SSS1.p2" class="ltx_para ltx_noindent">
+<ul id="S2.I1" class="ltx_itemize">
+<li id="S2.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">CREATE</span> - create a new table, a view of a table, or other object in the database</p>
+</div>
+</li>
+<li id="S2.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">ALTER</span> - alter an existing database object, such as a table</p>
+</div>
+</li>
+<li id="S2.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">DROP</span> - delete objects from the database</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S2.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.1.2 </span>Data Manipulation Language (DML)</h4>
+
+<div id="S2.SS1.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The data manipulation language (DML) deals with data manipulation.</p>
+</div>
+<div id="S2.SS1.SSS2.p2" class="ltx_para ltx_noindent">
+<ul id="S2.I2" class="ltx_itemize">
+<li id="S2.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">SELECT</span> - retrieve data from a database</p>
+</div>
+</li>
+<li id="S2.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">INSERT</span> - insert data into a table</p>
+</div>
+</li>
+<li id="S2.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">UPDATE</span> - updates existing data within a table
+</p>
+</div>
+</li>
+<li id="S2.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">DELETE</span> - deletes all records from a table, the space for the records remain</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S2.SS1.SSS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">SQL language is actually quite “relax” compared to other programming languages.
+If we are not rigorous enough, we might get a wrong result without warning.
+The only enforced key property is that all rows are unique. (But not for rows in query result)</p>
+</div>
+</section>
+</section>
+<section id="S2.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.2 </span>Create Table</h3>
+
+<div id="S2.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for creating a table is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CREATE TABLE &lt;table name&gt; (
+    &lt;column name&gt; &lt;data type&gt; &lt;constraints&gt;,
+    &lt;column name&gt; &lt;data type&gt; &lt;constraints&gt;,
+    ...
+);
+</pre>
+</div>
+<div id="S2.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Identifiers</span> are <span class="ltx_text ltx_font_bold">case-insensitive</span> in SQL.
+<span class="ltx_text ltx_font_bold">“tablename”</span> and <span class="ltx_text ltx_font_bold">“TABLENAME”</span> are the same.
+In PostgreSQL, identifiers must begin with a letter or an underscore, and can contain letters, digits, and underscores.
+However, if you quote the identifier with double quotes, you can use any characters you want except double quotes, and will be treated as case-sensitive.
+When doing so, the word is always treated as an identifier, and thus you can use reserved words like “UPDATE” as identifiers.
+As a result, we often use underscore to separate words in identifiers, instead of camel case.
+<span class="ltx_text ltx_font_italic">(UPDATE without quotes is not an identifier, it is a keyword.)</span>
+</p>
+</div>
+<section id="S2.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.2.1 </span>Data Types</h4>
+
+<div id="S2.SS2.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Text data types:</p>
+<ul id="S2.I3" class="ltx_itemize">
+<li id="S2.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">CHAR(n)</span> - fixed-length character string, blank padded</p>
+</div>
+</li>
+<li id="S2.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">VARCHAR(n)</span> - variable-length character string, no padding</p>
+</div>
+</li>
+<li id="S2.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">TEXT</span> - variable-length character string, no limit (sometimes as CLOB)</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S2.SS2.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Numeric data types:</p>
+<ul id="S2.I4" class="ltx_itemize">
+<li id="S2.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">INTEGER</span> - signed four-byte integer</p>
+</div>
+</li>
+<li id="S2.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">FLOAT</span> - floating-point number (will be converted to double precision or real)</p>
+</div>
+</li>
+<li id="S2.I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">REAL</span> - single precision floating-point number (4 bytes)</p>
+</div>
+</li>
+<li id="S2.I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">DOUBLE PRECISION</span> - double precision floating-point number (8 bytes)</p>
+</div>
+</li>
+<li id="S2.I4.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">NUMERIC(precision, scale)</span> - exact numeric of selected precision and scale (scale is the number of digits after the decimal point, precision is the total number of digits)</p>
+</div>
+</li>
+<li id="S2.I4.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I4.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">NUMERIC(precision)</span> - exact numeric of selected precision and 0 scale, this will force the number to be an integer</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S2.SS2.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Date and time data types:</p>
+<ul id="S2.I5" class="ltx_itemize">
+<li id="S2.I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I5.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">DATE</span> - calendar date (year, month, day)</p>
+</div>
+</li>
+<li id="S2.I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I5.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">TIME</span> - time of day (no time zone)</p>
+</div>
+</li>
+<li id="S2.I5.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I5.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">TIMESTAMP</span> - date and time (no time zone)
+</p>
+</div>
+</li>
+<li id="S2.I5.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I5.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">TIMESTAMP WITH TIME ZONE</span> - date and time, including time zone</p>
+</div>
+</li>
+<li id="S2.I5.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I5.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">INTERVAL</span> - time interval</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S2.SS2.SSS1.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Binary data types:</p>
+<ul id="S2.I6" class="ltx_itemize">
+<li id="S2.I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I6.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">RAW(n)</span> - fixed-length binary string</p>
+</div>
+</li>
+<li id="S2.I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I6.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">VARBINARY(n)</span> - variable-length binary string</p>
+</div>
+</li>
+<li id="S2.I6.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I6.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">BLOB</span> - variable-length binary string, no limit</p>
+</div>
+</li>
+<li id="S2.I6.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I6.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">BYTEA</span> - variable-length binary string, no limit</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S2.SS2.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.2.2 </span>Constraints</h4>
+
+<div id="S2.SS2.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Constraints are used to specify rules for data in the table.
+They are usually used to limit the type of data that can go into a table.
+Constraints can be specified when the table is created (inside the CREATE TABLE statement) or after the table is created (inside the ALTER TABLE statement).</p>
+<ul id="S2.I7" class="ltx_itemize">
+<li id="S2.I7.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">NOT NULL</span> - Ensures that a column cannot have a NULL value</p>
+</div>
+</li>
+<li id="S2.I7.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">UNIQUE</span> - Ensures that all values in a column are different</p>
+</div>
+</li>
+<li id="S2.I7.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">PRIMARY KEY</span> - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table</p>
+</div>
+</li>
+<li id="S2.I7.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">FOREIGN KEY</span> - Uniquely identifies a row/record in another table (only primary key or unique column can be referenced)</p>
+</div>
+</li>
+<li id="S2.I7.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">CHECK</span> - Ensures that all values in a column satisfies a specific condition</p>
+</div>
+</li>
+<li id="S2.I7.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">DEFAULT</span> - Sets a default value for a column when no value is specified</p>
+</div>
+</li>
+<li id="S2.I7.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">INDEX</span> - Used to create and retrieve data from the database very quickly
+</p>
+</div>
+</li>
+<li id="S2.I7.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">AUTO INCREMENT</span> - Automatically increments the value of the column by 1 each time a new row is inserted</p>
+</div>
+</li>
+<li id="S2.I7.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">SERIAL</span> - Automatically increments the value of the column by 1 each time a new row is inserted</p>
+</div>
+</li>
+<li id="S2.I7.i10" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I7.i10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">CONSTRAINT</span> - Used to define a constraint on a column</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S2.SS2.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.2.3 </span>Comments</h4>
+
+<div id="S2.SS2.SSS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Comments are used to explain sections of SQL statements, or to prevent execution of SQL statements.
+Single-line comments start with –.
+However, comment written in this way will not be stored in the database.
+To store comments in the database, we need to use the COMMENT command.</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+COMMENT ON TABLE &lt;table name&gt; IS ’comment’;
+COMMENT ON COLUMN &lt;table name&gt;.&lt;column name&gt; IS ’comment’;
+</pre>
+</div>
+</section>
+</section>
+<section id="S2.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.3 </span>Insert</h3>
+
+<div id="S2.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for inserting a row into a table is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+INSERT INTO &lt;table name&gt; (&lt;column name&gt;, &lt;column name&gt;, ...)
+VALUES (&lt;value&gt;, &lt;value&gt;, ...);
+</pre>
+</div>
+<div id="S2.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the column names are omitted, database will try to insert the values into the columns in the order they were defined in the table.
+</p>
+</div>
+</section>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Lecture 3</h2>
+
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.1 </span>Select</h3>
+
+<div id="S3.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for selecting data from a table is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+SELECT &lt;column name&gt;, &lt;column name&gt;, ...
+FROM &lt;table name&gt;;
+</pre>
+</div>
+<section id="S3.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">3.1.1 </span>WHERE Clause</h4>
+
+<div id="S3.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The WHERE clause is used to filter records.
+The WHERE clause is used to extract only those records that fulfill a specified condition.</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+SELECT &lt;column name&gt;, &lt;column name&gt;, ...
+FROM &lt;table name&gt;
+WHERE &lt;condition&gt;;
+</pre>
+</div>
+<div id="S3.SS1.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">When using AND and OR in the WHERE clause, we need to use parentheses to make sure the database knows what to evaluate first.
+The default precedence of AND and OR is AND first, then OR.</p>
+</div>
+<div id="S3.SS1.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Sometimes using the IN operator is more convenient than using multiple OR conditions.
+BETWEEN is also a convenient way to check if a value is within a range. (inclusive)</p>
+</div>
+<div id="S3.SS1.SSS1.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">LIKE is a special operator used to match text patterns.
+It has two wildcards:</p>
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">% - The percent sign represents zero, one, or multiple characters</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">_ - The underscore represents a single character</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">The DBMS is case-sensitive by default, but we can use ILIKE to make it case-insensitive.
+Also, it is not a good idea to add UPPER or LOWER to the column name, since the performance will be bad.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.2 </span>Date</h3>
+
+<div id="S3.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When comparing a data column with a string, the database will try to convert the string to a date.
+It is very wrong to compare a date with a datetime, since the database will try to convert the date to a datetime and the time part will be 00:00:00.
+When doing arithmetic operations on dates, you should use the INTERVAL type.</p>
+</div>
+</section>
+<section id="S3.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.3 </span>NULL</h3>
+
+<div id="S3.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">NULL is a special value that represents missing or unknown information.
+When comparing a column with NULL, you should use IS NULL or IS NOT NULL.</p>
+</div>
+<div id="S3.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">NULL is troublesome when doing arithmetic operations.
+The result of any arithmetic operation with NULL is NULL.
+When doing logic operations, NULL sometimes behaves like FALSE, sometimes behaves like TRUE.
+It may be short circuited like FALSE AND NULL.</p>
+</div>
+<div id="S3.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">When NULL appears in the IN or NOT IN clause, we need to be careful.
+A NULL in the IN clause can be ignored, the condition will work as expected.
+Because IN will be converted to condition1 OR condition2, and a FALSE chained by OR can be omitted.
+But a NULL in the NOT IN clause will lead to bad result.
+The condition is always false, since the NOT IN will be converted to condition1 AND condition2, and a FALSE chained by AND will always return FALSE.</p>
+</div>
+</section>
+<section id="S3.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.4 </span>Functions</h3>
+
+<div id="S3.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Here are some useful functions:</p>
+<ul id="S3.I2" class="ltx_itemize">
+<li id="S3.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">||</span> - concatenate two strings</p>
+</div>
+</li>
+<li id="S3.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">cast</span> - convert a value to another type (cast(’1’ as integer))</p>
+</div>
+</li>
+<li id="S3.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">date_part</span> - extract a part of a date (date_part(’year’, date))</p>
+</div>
+</li>
+<li id="S3.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">round</span> - round a number to a specified number of decimal places (round(number, decimal places))</p>
+</div>
+</li>
+<li id="S3.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">trunc</span> - truncate a number to a specified number of decimal places (trunc(number, decimal places))</p>
+</div>
+</li>
+<li id="S3.I2.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">floor</span> - round a number down to the nearest integer</p>
+</div>
+</li>
+<li id="S3.I2.i7" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">ceil</span> - round a number up to the nearest integer</p>
+</div>
+</li>
+<li id="S3.I2.i8" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">upper</span> - convert a string to uppercase</p>
+</div>
+</li>
+<li id="S3.I2.i9" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">lower</span> - convert a string to lowercase</p>
+</div>
+</li>
+<li id="S3.I2.i10" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">substr</span> - extract a substring from a string (substring(string, start, length))</p>
+</div>
+</li>
+<li id="S3.I2.i11" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i11.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">trim</span> - remove leading and trailing spaces from a string (trim(string))</p>
+</div>
+</li>
+<li id="S3.I2.i12" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i12.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">replace</span> - replace all occurrences of a substring in a string with another substring (replace(string, substring, replacement))</p>
+</div>
+</li>
+<li id="S3.I2.i13" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i13.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">coalesce</span> - return the first non-null value in a list (coallesce(value1, value2, …))
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S3.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">For performance reasons, we can use functions on the selected columns or on the right side of the WHERE clause, but not on the left side of the WHERE clause.</p>
+</div>
+</section>
+<section id="S3.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.5 </span>CASE</h3>
+
+<div id="S3.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The CASE statement goes through conditions and returns a value when the first condition is met (like an IF-THEN-ELSE statement).</p>
+</div>
+<div id="S3.SS5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Here is the first syntax of the CASE statement:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CASE &lt;column name&gt;
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE result
+END AS &lt;alias&gt;
+</pre>
+</div>
+<div id="S3.SS5.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">NULL cannot be tested in this way, since NULL is not equal to anything, not even itself. (“WHEN NULL” will always be false)</p>
+</div>
+<div id="S3.SS5.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Here is the second syntax of the CASE statement:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE result
+END AS &lt;alias&gt;
+</pre>
+</div>
+<div id="S3.SS5.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can compare NULL with IS NULL or IS NOT NULL in this way, by writing the condition as “WHEN column IS NULL”.</p>
+</div>
+</section>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Lecture 4</h2>
+
+<section id="S4.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.1 </span>Distinct</h3>
+
+<div id="S4.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The DISTINCT keyword is used to return only distinct (different) values.
+If multiple columns are specified, the DISTINCT keyword will evaluate the duplicate based on the combination of values of these columns.</p>
+</div>
+</section>
+<section id="S4.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.2 </span>Aggregate Functions</h3>
+
+<div id="S4.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can use aggregate functions to perform calculations on a set of values and return a single value.
+This would require a GROUP BY clause.
+Every column in the SELECT clause must either be in the GROUP BY clause or be an aggregate function.</p>
+</div>
+<div id="S4.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A HAVING clause is used to filter values after they have been grouped.
+It may not need to be the same as the aggregate function in the SELECT clause.
+For example, we can use HAVING COUNT(*) &gt; 1 to find duplicate rows.</p>
+</div>
+<div id="S4.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Sometimes there are two to write the same query, one with HAVING and one with WHERE.
+The WHERE clause is applied before the GROUP BY clause, while the HAVING clause is applied after the GROUP BY clause.
+We encourage using WHERE first, since the aggregate function is expensive, and we want it to be applied to as few rows as possible.</p>
+</div>
+<div id="S4.SS2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Aggregate functions ignore NULL values, even if we use DISTINCT.
+However, if we write COUNT(*), this will count all rows, including those with NULL values.</p>
+</div>
+</section>
+<section id="S4.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.3 </span>Inner Join</h3>
+
+<div id="S4.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+If the two columns have the same name, we need to specify them with the table name.</p>
+</div>
+<div id="S4.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">JOIN can work on subqueries.
+Chained JOINs are evaluated from left to right.</p>
+</div>
+</section>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Lecture 5</h2>
+
+<section id="S5.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.1 </span>Outer Join</h3>
+
+<div id="S5.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A left outer join will return all rows in the left table, and the matching rows in the right table.
+If there is no match, the right side will contain NULL.</p>
+</div>
+<div id="S5.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A full outer join will return all rows in both tables.
+If there is no match, the side without a match will contain NULL.</p>
+</div>
+<div id="S5.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">When dealing with outer joins, we need to be careful with the WHERE clause.
+If we put a condition on the right table, it will be applied after the join, and the rows with NULL will be filtered out.
+This makes the outer join behave like an inner join.</p>
+</div>
+</section>
+<section id="S5.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.2 </span>Set Operators</h3>
+
+<div id="S5.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The UNION operator is used to combine the result-set of two or more SELECT statements.
+This eliminates duplicate rows between the various SELECT statements.
+If we want to keep the duplicate rows, we can use UNION ALL.</p>
+</div>
+<div id="S5.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The INTERSECT operator is used to return the records that two SELECT statements have in common.
+The INTERSECT operator is equivalent to the INNER JOIN clause.</p>
+</div>
+<div id="S5.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The EXCEPT operator is used to return all the records in the first SELECT statement that are not in the second SELECT statement.
+The EXCEPT operator is equivalent to the LEFT OUTER JOIN clause where the second table’s values are NULL.</p>
+</div>
+</section>
+<section id="S5.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.3 </span>Subqueries</h3>
+
+<div id="S5.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A <span class="ltx_text ltx_font_bold">correlated subquery</span> is a subquery that uses values from the outer query.
+This means for each row processed by the outer query, the inner query is executed as well.</p>
+</div>
+</section>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Lecture 6</h2>
+
+<section id="S6.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.1 </span>Order By</h3>
+
+<div id="S6.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+The default is ascending order.</p>
+</div>
+<div id="S6.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">How the data is sorted is determined by collation.
+This can be specified when creating a table like:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CREATE TABLE &lt;table name&gt; (
+    &lt;column name&gt; &lt;data type&gt; COLLATE &lt;collation&gt;,
+    &lt;column name&gt; &lt;data type&gt; COLLATE &lt;collation&gt;,
+    ...
+);
+</pre>
+</div>
+<div id="S6.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">If sorting by alphabet doesn’t work, we can specify an order using a CASE statement, like:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+ORDER BY CASE WHEN &lt;column name&gt; = ’value1’ THEN 1
+    WHEN &lt;column name&gt; = ’value2’ THEN 2
+    ...
+    ELSE 3
+END
+</pre>
+<p class="ltx_p">Then we sort by the number we assigned to each value.</p>
+</div>
+</section>
+<section id="S6.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.2 </span>Limit and Offset</h3>
+
+<div id="S6.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The LIMIT keyword is used to limit the number of rows returned in a query result.
+The OFFSET keyword is used to offset the starting row number.</p>
+</div>
+</section>
+<section id="S6.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.3 </span>Window Functions</h3>
+
+<div id="S6.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A window function performs a calculation across a set of table rows that are somehow related to the current row.
+This is comparable to the type of calculation that can be done with an aggregate function.
+However, unlike regular aggregate functions, use of a window function does not cause rows to become grouped into a single output row.
+Instead, the rows retain their separate identities.
+Behind the scenes, the window function is able to access more than just the current row of the query result.</p>
+</div>
+<div id="S6.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are two types of window functions:</p>
+<ul id="S6.I1" class="ltx_itemize">
+<li id="S6.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Ranking functions</span> - assign a rank to each row based on the value of the column</p>
+</div>
+</li>
+<li id="S6.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Aggregate functions</span> - calculate an aggregate value based on a group of rows</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S6.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The ranking functions behave differently and should be used with care when there are duplicate values.
+Take 1, 2, 2, 3, 4 as an example.
+In <span class="ltx_text ltx_font_bold">row_number</span>, the rank will be assigned in the order of the rows, so the result will be 1, 2, 3, 4, 5.
+In <span class="ltx_text ltx_font_bold">rank</span>, the rank will be assigned in the order of the values, so the result will be 1, 2, 2, 4, 5.
+In <span class="ltx_text ltx_font_bold">dense_rank</span>, the rank will be assigned in the order of the values, but the rank will not have gaps, so the result will be 1, 2, 2, 3, 4.</p>
+</div>
+</section>
+</section>
+<section id="S7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">7 </span>Lecture 7</h2>
+
+<section id="S7.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.1 </span>Fuzzy Search</h3>
+
+<div id="S7.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Fuzzy search is a technique for finding strings that match a pattern approximately (rather than exactly).</p>
+</div>
+<div id="S7.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">What usually do: isolate each word, and rank by the number of words matched.</p>
+</div>
+</section>
+<section id="S7.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.2 </span>Transaction</h3>
+
+<div id="S7.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Transaction is a sequence of operations performed as a single logical unit of work.
+It starts with a BEGIN statement and ends with a COMMIT or ROLLBACK statement.</p>
+</div>
+<div id="S7.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Some DBMS has autocommit enabled by default, such as JDBC.</p>
+</div>
+<div id="S7.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Difference also appears about DDL.
+In PostgreSQL, DDL can be used in a transaction and can be rolled back.</p>
+</div>
+</section>
+<section id="S7.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.3 </span>Insert With Sequence</h3>
+
+<div id="S7.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A sequence is a database object that generates numbers in sequence.
+The standard syntax for creating and using a sequence in PostgreSQL is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CREATE SEQUENCE &lt;sequence name&gt;;
+SELECT NEXTVAL(’&lt;sequence name&gt;’); -- return the next value generated by the sequence
+SELECT CURRVAL(’&lt;sequence name&gt;’); -- return the last value generated by the sequence
+SELECT LASTVAL(); -- return the last value generated by any sequence
+</pre>
+</div>
+<div id="S7.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Be careful that the sequence name should be quoted with single quotes in the SELECT statement.</p>
+</div>
+<div id="S7.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you specify a column as serial when creating a table, PostgreSQL will automatically create a sequence for you.</p>
+</div>
+</section>
+<section id="S7.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.4 </span>Insert with COPY</h3>
+
+<div id="S7.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The COPY command copies data between a file and a table.
+The file can be on the server or on the client.
+It is also called a bulk load operation.</p>
+</div>
+</section>
+</section>
+<section id="S8" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">8 </span>Lecture 8</h2>
+
+<section id="S8.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.1 </span>Update and Delete</h3>
+
+<div id="S8.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for updating a row in a table is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+UPDATE &lt;table name&gt;
+SET &lt;column name&gt; = &lt;value&gt;, &lt;column name&gt; = &lt;value&gt;, ...
+WHERE &lt;condition&gt;;
+</pre>
+</div>
+<div id="S8.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for deleting a row in a table is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+DELETE FROM &lt;table name&gt;
+WHERE &lt;condition&gt;;
+</pre>
+</div>
+<div id="S8.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">A delete operation is actually a logical delete.
+It can be slow, but it can be rolled back.
+If we want to delete a row permanently, we can use TRUNCATE.</p>
+</div>
+</section>
+</section>
+<section id="S9" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">9 </span>Lecture 9</h2>
+
+<section id="S9.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.1 </span>Procedure</h3>
+
+<div id="S9.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A procedure is a subprogram that performs a specific action.
+It can be good for performance, since it can reduce network traffic.
+It is also good for security, since it can prevent SQL injection or direct access to tables.</p>
+</div>
+</section>
+<section id="S9.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.2 </span>Trigger</h3>
+
+<div id="S9.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A trigger is a special type of stored procedure that automatically runs when an event occurs in the database server.</p>
+</div>
+<div id="S9.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">It can be used to modify input on the fly (with before trigger),
+or check complex constraints (with before trigger),
+or manage data redundancy (with after trigger).</p>
+</div>
+</section>
+<section id="S9.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.3 </span>Auditing</h3>
+
+<div id="S9.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Trigger is the last line of defense.
+Do not use trigger to fix bad design, since the trigger is inefficient and complicated.</p>
+</div>
+</section>
+</section>
+<section id="S10" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">10 </span>Lecture 10</h2>
+
+<section id="S10.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.1 </span>Index</h3>
+
+<div id="S10.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">An index will be created automatically for the primary key or unique constraint.
+However, it is encouraged to declare unique constraint instead of using the unique index.</p>
+</div>
+<div id="S10.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">It is not a good idea to have too many indexes.
+First, it will take up a lot of space.
+Second, it will slow down the insert, update and delete operations.</p>
+</div>
+<div id="S10.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">For performance reasons, there are criteria: often used and selective.
+Often used means the column is used in the WHERE clause.
+Selective means the column has a lot of different values.</p>
+</div>
+<div id="S10.SS1.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are certain types of queries that cannot use indexes.
+For example, queries with LIKE that begins with a wildcard.
+Or a query with a function on the column.</p>
+</div>
+<div id="S10.SS1.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">On way to improve performance is to add an extra column to the table, and use it to index.(although this violates the normalization rule)
+Another is to create index on the function of the column.(the function must be deterministic)</p>
+</div>
+</section>
+</section>
+<section id="S11" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">11 </span>Lecture 11</h2>
+
+<section id="S11.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">11.1 </span>View</h3>
+
+<div id="S11.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A view is a virtual table based on the result-set of an SQL statement.
+It contains rows and columns, just like a real table.
+The columns are fixed once the view is created, and cannot be changed.(Even if you create a view with SELECT *)</p>
+</div>
+<div id="S11.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A view can be used to hide complex queries.
+This might not be a good idea in some scenarios, such as you want only part of the data, but view will compute all data and then filter it.
+Also, it is hard to improve query performance since you have no idea what the view is doing.</p>
+</div>
+<div id="S11.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The positive side is that view can be used to hide sensitive data.</p>
+</div>
+<div id="S11.SS1.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">You may create view on other views, but this is dreadful for performance.</p>
+</div>
+<div id="S11.SS1.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">The standard syntax for creating a view is:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+CREATE VIEW &lt;view name&gt; AS
+SELECT &lt;column name&gt;, &lt;column name&gt;, ...
+FROM &lt;table name&gt;
+WHERE &lt;condition&gt;;
+</pre>
+</div>
+</section>
+<section id="S11.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">11.2 </span>Deeper Into View</h3>
+
+<div id="S11.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Update a view is possible, but it is not a good idea.
+If some data comes form multiple tables, the DBMS will throw an error.</p>
+</div>
+</section>
+<section id="S11.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">11.3 </span>Security</h3>
+
+<div id="S11.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The DBMS provides a security mechanism to control access to data.
+We can grant or revoke privileges on tables and views to users and roles.</p>
+</div>
+<div id="S11.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Be careful when updating a view, this will lose all previous privileges on the view.
+You can control update of a view with check option, or by using triggers.</p>
+</div>
+</section>
+</section>
+<section id="S12" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">12 </span>Lecture 12</h2>
+
+<section id="S12.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">12.1 </span>Catalog</h3>
+
+<div id="S12.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There is one catalog per database.
+It stores metadata, such as table names, column names, data types, etc.
+These tables are called system tables, you cannot modify them directly.</p>
+</div>
+</section>
+</section>
+<section id="S13" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">13 </span>Lecture 13</h2>
+
+<section id="S13.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">13.1 </span>Query Optimization</h3>
+
+<div id="S13.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When we write a query, DBMS will go through the following steps:
+</p>
+<ul id="S13.I1" class="ltx_itemize">
+<li id="S13.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Parsing</span> - check syntax, check permissions, check if the table exists, etc.</p>
+</div>
+</li>
+<li id="S13.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Rewriting</span> - rewrite the query to an equivalent query</p>
+</div>
+</li>
+<li id="S13.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Planning</span> - find the best way to execute the query</p>
+</div>
+</li>
+<li id="S13.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Execution</span> - execute the query</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S13.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">One way to accelerate this is to store system tables in memory.(for parsing check and rewriting)
+And most DBMS will keep the parsed query in memory, so the next time you run the same query, it will be faster.</p>
+</div>
+<div id="S13.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">When query planning, DBMS evaluates:</p>
+<ul id="S13.I2" class="ltx_itemize">
+<li id="S13.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Logical transform</p>
+</div>
+</li>
+<li id="S13.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">indexes</p>
+</div>
+</li>
+<li id="S13.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Hardware performance</p>
+</div>
+</li>
+<li id="S13.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">System load</p>
+</div>
+</li>
+<li id="S13.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S13.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Setting</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S13.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">13.2 </span>Scaling</h3>
+
+<div id="S13.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are two ways to scale a database: scaling up and scaling out.
+Scaling up means to replace the hardware with a more powerful one.
+Scaling out means to add more hardware.</p>
+</div>
+<div id="S13.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, with relative capacity formula, scaling out will have diminishing returns.</p>
+</div>
+<div id="S13.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The major issue with scaling out is that it is hard to keep the data consistent.
+We use two-phase commit to solve this problem.
+That is, we ask every server whether they are ready to commit, and then commit if everyone is ready, if not we abort.
+However, due to latency, this is may have a bad performance.</p>
+</div>
+</section>
+</section>
+<section id="S14" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">14 </span>Lecture 14</h2>
+
+<section id="S14.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">14.1 </span>NoSQL</h3>
+
+<div id="S14.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">NoSQL is a non-relational database management system.
+It means more than SQL, not no SQL.
+It is often used for big data and real-time web applications.
+It handles unstructured data and can work with no predefined schema.</p>
+</div>
+<div id="S14.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Advantages of NoSQL:</p>
+<ul id="S14.I1" class="ltx_itemize">
+<li id="S14.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Handles big data</p>
+</div>
+</li>
+<li id="S14.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">No predefined schema</p>
+</div>
+</li>
+<li id="S14.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Handles unstructured data</p>
+</div>
+</li>
+<li id="S14.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Cheaper to manage</p>
+</div>
+</li>
+<li id="S14.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Easy to scale</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S14.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Advantages of SQL:</p>
+<ul id="S14.I2" class="ltx_itemize">
+<li id="S14.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Better fir relational data</p>
+</div>
+</li>
+<li id="S14.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Normalization</p>
+</div>
+</li>
+<li id="S14.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Well known language</p>
+</div>
+</li>
+<li id="S14.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Data integrity</p>
+</div>
+</li>
+<li id="S14.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S14.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">ACID compliance</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</article>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+---
+title: "Algorithm Design and Analysis (H) Final Exam Paper"
+tags:
+- Algorithm Design and Analysis
+- Exam Paper
+excerpt: "Final exam paper for CS216 Algorithm Design and Analysis (H), reconstructed from memory."
+---
+
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Problem 1: Greedy</title>
+<!--Generated on Sat Jul 27 23:39:04 2024 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<div id="p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">This final exam paper has been reconstructed from memory, and as a result, some details may be missing. I hope it serves as a useful reference and aid for future students.</p>
+</div>
+<section id="Sx1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 1: Greedy</h2>
+
+<div id="Sx1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You have <math id="Sx1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> suspicious transactions, each occurring at time <math id="Sx1.p1.m2" class="ltx_Math" alttext="t_{i}" display="inline"><msub><mi>t</mi><mi>i</mi></msub></math> with an error tolerance <math id="Sx1.p1.m3" class="ltx_Math" alttext="e_{i}" display="inline"><msub><mi>e</mi><mi>i</mi></msub></math>. A new account also has <math id="Sx1.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> transactions occurring at times <math id="Sx1.p1.m5" class="ltx_Math" alttext="m_{i}" display="inline"><msub><mi>m</mi><mi>i</mi></msub></math>. The <math id="Sx1.p1.m6" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th transaction from the new account can be linked to the <math id="Sx1.p1.m7" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>-th transaction from the old account if the time difference is within the error tolerance, i.e., <math id="Sx1.p1.m8" class="ltx_Math" alttext="|m_{i}-t_{j}|\leq e_{j}" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>m</mi><mi>i</mi></msub><mo>-</mo><msub><mi>t</mi><mi>j</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>≤</mo><msub><mi>e</mi><mi>j</mi></msub></mrow></math>. Each transaction can only be linked once.</p>
+</div>
+<div id="Sx1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Design an algorithm to determine if all <math id="Sx1.p2.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> transactions from the old account can be linked to transactions from the new account. An <math id="Sx1.p2.m2" class="ltx_Math" alttext="O(n^{2})" display="inline"><mrow><mi>O</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> time complexity is acceptable. Explain why your algorithm is correct.</p>
+</div>
+</section>
+<section id="Sx2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 2: Divide and Conquer</h2>
+
+<div id="Sx2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A node in a complete binary tree is considered a local minimum if its value is less than or equal to the values of all its neighbors (not just its children).</p>
+</div>
+<div id="Sx2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Design an algorithm to find a local minimum in a complete binary tree with <math id="Sx2.p2.m1" class="ltx_Math" alttext="O(\log n)" display="inline"><mrow><mi>O</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> time complexity, starting from the root node (<math id="Sx2.p2.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> is the number of nodes in the tree). You only know the value of a node when you visit it. Explain why your algorithm is correct.</p>
+</div>
+</section>
+<section id="Sx3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 3: Dynamic Programming</h2>
+
+<div id="Sx3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">As the manager of a computer shop, you can buy new computers at a fixed price <math id="Sx3.p1.m1" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> at the start of each month (no matter how many computers you buy, the price will always be <math id="Sx3.p1.m2" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>). Each month <math id="Sx3.p1.m3" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>, <math id="Sx3.p1.m4" class="ltx_Math" alttext="c_{i}" display="inline"><msub><mi>c</mi><mi>i</mi></msub></math> computers will be sold immediately. Unsold computers are stored in a warehouse with capacity <math id="Sx3.p1.m5" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> and a monthly storage fee <math id="Sx3.p1.m6" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> per computer. Given the number of computers sold over <math id="Sx3.p1.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> months, design an algorithm to minimize the total cost of buying and storing computers. The time complexity of your algorithm should be a polynomial in <math id="Sx3.p1.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> and <math id="Sx3.p1.m9" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.</p>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section>
+<section id="Sx4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 4: Polynomial Time Reduction</h2>
+
+<div id="Sx4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Two algorithms are defined as follows:</p>
+<ul id="Sx4.I1" class="ltx_itemize">
+<li id="Sx4.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">VERTEX-COVER: Determines in polynomial time if a graph <math id="Sx4.I1.i1.p1.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> has a vertex cover of size <math id="Sx4.I1.i1.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>.</p>
+</div>
+</li>
+<li id="Sx4.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="Sx4.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">FIND-VERTEX-COVER: Finds a vertex cover of size <math id="Sx4.I1.i2.p1.m1" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> for a graph <math id="Sx4.I1.i2.p1.m2" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> in polynomial time.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="Sx4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Prove that VERTEX-COVER and FIND-VERTEX-COVER are polynomial-time equivalent, i.e., VERTEX-COVER <math id="Sx4.p2.m1" class="ltx_Math" alttext="\equiv_{p}" display="inline"><msub><mo>≡</mo><mi>p</mi></msub></math> FIND-VERTEX-COVER.</p>
+</div>
+</section>
+<section id="Sx5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 5: Network Flow</h2>
+
+<div id="Sx5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You have a computer with operating system A and <math id="Sx5.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> software programs. A new operating system B is installed on the same computer. Transplanting software <math id="Sx5.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> from A to B gives a performance improvement of <math id="Sx5.p1.m3" class="ltx_Math" alttext="p_{i}\geq 0" display="inline"><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>≥</mo><mn>0</mn></mrow></math>. Some software program pairs <math id="Sx5.p1.m4" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> and <math id="Sx5.p1.m5" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math> work closely together: if only one of them is transplanted, there’s a performance degradation of <math id="Sx5.p1.m6" class="ltx_Math" alttext="d_{ij}\geq 0" display="inline"><mrow><msub><mi>d</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub><mo>≥</mo><mn>0</mn></mrow></math>. Software 1 cannot be transplanted to B.</p>
+</div>
+<div id="Sx5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Design an algorithm to maximize the net performance improvement after transplanting the software programs. Explain the correctness of your algorithm (excluding the network flow algorithm’s correctness).</p>
+</div>
+</section>
+<section id="Sx6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 6: Randomized Algorithm</h2>
+
+<div id="Sx6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">To find a four-coloring of a graph <math id="Sx6.p1.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, an edge is considered satisfied if its two endpoints have different colors. Design a randomized algorithm to color <math id="Sx6.p1.m2" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> such that at least <math id="Sx6.p1.m3" class="ltx_Math" alttext="\frac{3}{4}" display="inline"><mfrac><mn>3</mn><mn>4</mn></mfrac></math> of the edges are satisfied. Explain why your algorithm is correct.</p>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+<div id="Sx6.p2" class="ltx_para ltx_align_center">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold" style="font-size:144%;">Solutions</span></p>
+</div>
+<div id="Sx6.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The solutions are from myself and may not be the best solutions.</p>
+</div>
+</section>
+<section id="Sx7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 1: Greedy</h2>
+
+<div id="Sx7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Initialize an empty bipartite graph with <math id="Sx7.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> vertices on each side. If the <math id="Sx7.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th transaction from the new account can be linked to the <math id="Sx7.p1.m3" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>-th transaction from the old account, add an edge between the <math id="Sx7.p1.m4" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th on the left side and the <math id="Sx7.p1.m5" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>-th on the right side. Run the extended Gale-Shapley algorithm to find a maximum matching. If the matching is perfect, all transactions can be linked.</p>
+</div>
+</section>
+<section id="Sx8" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 2: Divide and Conquer</h2>
+
+<div id="Sx8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">To achieve <math id="Sx8.p1.m1" class="ltx_Math" alttext="O(\log n)" display="inline"><mrow><mi>O</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> time complexity, obviously we go through the tree in a binary search manner.</p>
+</div>
+<figure id="algorithm1" class="ltx_float">
+<div class="ltx_listing ltx_lst_numbers_left ltx_listing">
+<div class="ltx_listingline"> <span class="ltx_text ltx_font_bold">Input:</span> Graph <math id="algorithm1.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, root node <math id="algorithm1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>
+</div>
+<div class="ltx_listingline"> <span class="ltx_text ltx_font_bold">Output:</span> Local minimum
+</div>
+<div class="ltx_listingline"> Binary-Search(<math id="algorithm1.m3" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, <math id="algorithm1.m4" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>);
+</div>
+<div class="ltx_listingline"> 
+</div>
+</div>
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_float"><span class="ltx_text ltx_font_bold">Algorithm 1</span> </span>Find-Local-Minimum</figcaption>
+</figure>
+<figure id="algorithm2" class="ltx_float">
+<div class="ltx_listing ltx_lst_numbers_left ltx_listing">
+<div class="ltx_listingline"> <span class="ltx_text ltx_font_bold">Input:</span> Graph <math id="algorithm2.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, current node <math id="algorithm2.m2" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>
+</div>
+<div class="ltx_listingline"> <span class="ltx_text ltx_font_bold">Output:</span> Local minimum
+</div>
+<div class="ltx_listingline"> <span class="ltx_text ltx_font_bold">if</span> <em class="ltx_emph ltx_font_italic"><math id="algorithm2.m3" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> is a leaf node</em> <span class="ltx_text ltx_font_bold">then</span> 
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    <span class="ltx_text ltx_font_bold">return</span> <math id="algorithm2.m4" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>;
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    
+</div>
+<div class="ltx_listingline"> end if
+</div>
+<div class="ltx_listingline">
+<span class="ltx_text ltx_font_bold">if</span> <em class="ltx_emph ltx_font_italic"><math id="algorithm2.m5" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> is smaller than both children</em> <span class="ltx_text ltx_font_bold">then</span> 
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    <span class="ltx_text ltx_font_bold">return</span> <math id="algorithm2.m6" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>;
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    
+</div>
+<div class="ltx_listingline"> end if
+</div>
+<div class="ltx_listingline">
+<span class="ltx_text ltx_font_bold">if</span> <em class="ltx_emph ltx_font_italic"><math id="algorithm2.m7" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>’s left child is smaller than <math id="algorithm2.m8" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math></em> <span class="ltx_text ltx_font_bold">then</span> 
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    <span class="ltx_text ltx_font_bold">return</span> Binary-Search(<math id="algorithm2.m9" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, <math id="algorithm2.m10" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>’s left child);
+</div>
+<div class="ltx_listingline">  <span class="ltx_rule" style="width:1px;height:100%;background:black;display:inline-block;"> </span>    
+</div>
+<div class="ltx_listingline"> end if
+</div>
+<div class="ltx_listingline">
+<span class="ltx_text ltx_font_bold">return</span> Binary-Search(<math id="algorithm2.m11" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, <math id="algorithm2.m12" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>’s right child);
+</div>
+<div class="ltx_listingline"> 
+</div>
+</div>
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_float"><span class="ltx_text ltx_font_bold">Algorithm 2</span> </span>Binary-Search</figcaption>
+</figure>
+</section>
+<section id="Sx9" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 3: Dynamic Programming</h2>
+
+<div id="Sx9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Let <math id="Sx9.p1.m1" class="ltx_Math" alttext="dp[i][j]" display="inline"><mrow><mi>d</mi><mo>⁢</mo><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow></mrow></math> be the minimum cost of buying and storing computers for the first <math id="Sx9.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> months with <math id="Sx9.p1.m3" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math> computers in the warehouse. The recurrence relation is as follows:</p>
+<table id="Sx9.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="Sx9.Ex1.m1" class="ltx_Math" alttext="dp[i][j]=\min\begin{cases}dp[i-1][k]+F\cdot k&amp;\text{if }k=j+c_{i}\text{, i.e.,%
+ do not buy any new computers}\\
+dp[i-1][k]+P+F\cdot k&amp;\text{if }k&lt;j+c_{i}\text{, i.e., not enough computers in%
+ the warehouse}\\
+\end{cases}" display="block"><mrow><mrow><mi>d</mi><mo>⁢</mo><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow></mrow><mo>=</mo><mrow><mi>min</mi><mo>⁡</mo><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mrow><mi>d</mi><mo>⁢</mo><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">]</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></mrow><mo>+</mo><mrow><mi>F</mi><mo>⋅</mo><mi>k</mi></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><mi>k</mi></mrow><mo>=</mo><mrow><mi>j</mi><mo>+</mo><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>⁢</mo><mtext>, i.e., do not buy any new computers</mtext></mrow></mrow></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><mrow><mi>d</mi><mo>⁢</mo><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">]</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></mrow><mo>+</mo><mi>P</mi><mo>+</mo><mrow><mi>F</mi><mo>⋅</mo><mi>k</mi></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><mi>k</mi></mrow><mo>&lt;</mo><mrow><mi>j</mi><mo>+</mo><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>⁢</mo><mtext>, i.e., not enough computers in the warehouse</mtext></mrow></mrow></mrow></mtd></mtr></mtable></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</section>
+<section id="Sx10" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 4: Polynomial Time Reduction</h2>
+
+<div id="Sx10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Omitted since it’s presented in the lecture slides.</p>
+</div>
+</section>
+<section id="Sx11" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 5: Network Flow</h2>
+
+<div id="Sx11.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Similar to image segmentation problem, we can construct a graph with <math id="Sx11.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> nodes representing the software programs and extra nodes <math id="Sx11.p1.m2" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> and <math id="Sx11.p1.m3" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math>. For each software program <math id="Sx11.p1.m4" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>, add an edge from <math id="Sx11.p1.m5" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> to <math id="Sx11.p1.m6" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> with capacity <math id="Sx11.p1.m7" class="ltx_Math" alttext="p_{i}" display="inline"><msub><mi>p</mi><mi>i</mi></msub></math> and an edge from <math id="Sx11.p1.m8" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> to <math id="Sx11.p1.m9" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> with capacity <math id="Sx11.p1.m10" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>. For each software program pair <math id="Sx11.p1.m11" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> and <math id="Sx11.p1.m12" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math>, add edges from <math id="Sx11.p1.m13" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> to <math id="Sx11.p1.m14" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math> and from <math id="Sx11.p1.m15" class="ltx_Math" alttext="j" display="inline"><mi>j</mi></math> to <math id="Sx11.p1.m16" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> with capacity <math id="Sx11.p1.m17" class="ltx_Math" alttext="d_{ij}" display="inline"><msub><mi>d</mi><mrow><mi>i</mi><mo>⁢</mo><mi>j</mi></mrow></msub></math>. Run a maximum flow algorithm to find the maximum net performance improvement.</p>
+</div>
+</section>
+<section id="Sx12" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">Problem 6: Randomized Algorithm</h2>
+
+<div id="Sx12.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Same as the <math id="Sx12.p1.m1" class="ltx_Math" alttext="\frac{7}{8}" display="inline"><mfrac><mn>7</mn><mn>8</mn></mfrac></math>-approximation algorithm for SAT, which is presented in the lecture slides.</p>
+</div>
+</section>
+</article>
+</div>
+</div>
+</body>
+</html>

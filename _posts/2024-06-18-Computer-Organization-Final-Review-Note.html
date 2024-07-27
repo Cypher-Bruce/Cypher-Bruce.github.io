@@ -1,0 +1,1985 @@
+---
+title: "Computer Organization (H) Final Review Note"
+tags:
+- Computer Organization
+- Review Note
+excerpt: "Final review note for CS214 Computer Organization (H)"
+---
+
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1 RISC-V Introduction</title>
+<!--Generated on Sat Jul 27 21:37:42 2024 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>RISC-V Introduction</h2>
+
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Instruction Set Architecture (ISA)</h3>
+
+<div id="S1.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Instruction Set Architecture (ISA) is the interface between software and hardware. And similar to the ISA, the assembly language is the intermediate language between the high-level language and the machine language.</p>
+</div>
+<div id="S1.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Each CPU implements its own ISA, and the ISA is divided into two categories: CISC and RISC. CISC is the Complex Instruction Set Computer, and RISC is the Reduced Instruction Set Computer. The RISC-V is a RISC ISA, and it is an open-source ISA.</p>
+</div>
+</section>
+<section id="S1.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.2 </span>RISC-V Features</h3>
+
+<section id="S1.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.2.1 </span>Registers</h4>
+
+<div id="S1.SS2.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Since we use the RV32 variant of RISC-V, the registers are 32-bit wide. There are 32 registers in total, and they are named from x0 to x31.</p>
+</div>
+<div id="S1.SS2.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Registers have no type. How to interpret the data in the registers is determined by the instructions that use them. Typically, we treat the content as a signed 32-bit integer.</p>
+</div>
+<section id="S1.SS2.SSS1.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">2’s Complement Representation</h5>
+
+<div id="S1.SS2.SSS1.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Given an <math id="S1.SS2.SSS1.Px1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit number, the value of the number is <math id="S1.SS2.SSS1.Px1.p1.m2" class="ltx_Math" alttext="-2^{n-1}\times b_{n-1}+\sum_{i=0}^{n-2}2^{i}\times b_{i}" display="inline"><mrow><mrow><mo>-</mo><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo>×</mo><msub><mi>b</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></mrow><mo>+</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msubsup><mrow><msup><mn>2</mn><mi>i</mi></msup><mo>×</mo><msub><mi>b</mi><mi>i</mi></msub></mrow></mrow></mrow></math>, where <math id="S1.SS2.SSS1.Px1.p1.m3" class="ltx_Math" alttext="b_{i}" display="inline"><msub><mi>b</mi><mi>i</mi></msub></math> is the <math id="S1.SS2.SSS1.Px1.p1.m4" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th bit of the number.</p>
+</div>
+<div id="S1.SS2.SSS1.Px1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">More Info:</span>
+</p>
+</div>
+<div id="S1.SS2.SSS1.Px1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">An easy way to convert a negative number to its 2’s complement representation is to first write the positive representation of the number, then flip all the bits, and finally add 1 to the result.
+
+Interestingly, we can convert a negative number (in 2’s complement representation) to its positive representation with the same steps.</p>
+</div>
+</section>
+</section>
+<section id="S1.SS2.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.2.2 </span>Immediate Values</h4>
+
+<div id="S1.SS2.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When a number is used as an immediate value, it is always first sign-extended to 32 bits. This means that the most significant bit of the number is copied to all the bits to the left of it.</p>
+</div>
+</section>
+<section id="S1.SS2.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.2.3 </span>Memory Layout</h4>
+
+<div id="S1.SS2.SSS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The memory layout of a RISC-V system is as follows:</p>
+</div>
+<figure id="S1.SS2.SSS3.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Address</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Content</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">Highest Address</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Stack (grows downwards)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td"></td>
+<td class="ltx_td ltx_align_left">Dynamic Data / Heap (grows upwards)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td"></td>
+<td class="ltx_td ltx_align_left">Static Data (constants, etc.)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td"></td>
+<td class="ltx_td ltx_align_left">Text (program code)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">Lowest Address</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Reserved</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S1.SS2.SSS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Note:</span> Registers are not part of the memory layout.</p>
+</div>
+<section id="S1.SS2.SSS3.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Endianness</h5>
+
+<div id="S1.SS2.SSS3.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">RISC-V is a little-endian system. The endianness of a system determines the order in which the bytes of a multibyte number are stored in memory. There are two types of endianness: big-endian and little-endian. In a big-endian system, the most significant byte is stored at the lowest address, while in a little-endian system, the least significant byte is stored at the lowest address.</p>
+</div>
+<figure id="S1.SS2.SSS3.Px1.fig1" class="ltx_figure"><img src="{{ site.baseurl }}/images/2024-07-27-Computer-Organization-Final-Review-Note-fig1.png" id="S1.SS2.SSS3.Px1.g1" class="ltx_graphics ltx_centering" width="432" height="216" alt="">
+</figure>
+</section>
+</section>
+<section id="S1.SS2.SSS4" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.2.4 </span>Logical Operations</h4>
+
+<div id="S1.SS2.SSS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are two types of logical shifts: arithmetic shifts and logical shifts. In an arithmetic shift, the sign bit is copied to the left during a right shift, while in a logical shift, the sign bit is always 0.</p>
+</div>
+<figure id="S1.SS2.SSS4.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Operation</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Before</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">After</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Logical Shift Right</th>
+<td class="ltx_td ltx_align_left ltx_border_t">1001</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0100</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">Arithmetic Shift Right</th>
+<td class="ltx_td ltx_align_left ltx_border_bb">1001</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">1100</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+</section>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>RISC-V Procedure</h2>
+
+<section id="S2.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.1 </span>Procedure Call</h3>
+
+<div id="S2.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When a procedure is called, the following steps are taken:</p>
+</div>
+<figure id="S2.SS1.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Step</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Implementation</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Put parameters in a place where the callee can access them</th>
+<td class="ltx_td ltx_align_left ltx_border_t">Typically in registers <span class="ltx_text ltx_font_typewriter">a0</span> to <span class="ltx_text ltx_font_typewriter">a7</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Transfer control to the callee</th>
+<td class="ltx_td ltx_align_left">Using the <span class="ltx_text ltx_font_typewriter">jal</span> instruction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Acquire the storage needed for the callee</th>
+<td class="ltx_td ltx_align_left">Typically by decrementing the stack pointer</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Perform the desired task</th>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Place the result in a place where the caller can access it</th>
+<td class="ltx_td ltx_align_left">Typically in register <span class="ltx_text ltx_font_typewriter">a0</span> - <span class="ltx_text ltx_font_typewriter">a1</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">Return control to the caller</th>
+<td class="ltx_td ltx_align_left ltx_border_bb">Using the <span class="ltx_text ltx_font_typewriter">jalr</span> instruction</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S2.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.2 </span>Calling Convention</h3>
+
+<div id="S2.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The registers in RISC-V are divided into two categories: caller-saved registers and callee-saved registers. The difference here is that if the callee modifies a callee-saved register, it must restore the original value before returning control to the caller. But for caller-saved registers, the callee can modify them freely.</p>
+</div>
+<div id="S2.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">In convention, callee should save the following registers: <span class="ltx_text ltx_font_typewriter">sp</span> (stack pointer) and <span class="ltx_text ltx_font_typewriter">s0</span> to <span class="ltx_text ltx_font_typewriter">s11</span> (saved registers).</p>
+</div>
+</section>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>RISC-V Instruction Format</h2>
+
+<figure id="S3.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Type</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Format</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Feature</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">R-type</td>
+<td class="ltx_td ltx_align_left ltx_border_t"><span class="ltx_text ltx_font_typewriter">funct7 rs2 rs1 funct3 rd opcode</span></td>
+<td class="ltx_td ltx_align_left ltx_border_t">Take input from two registers and writes to one register</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">I-type</td>
+<td class="ltx_td ltx_align_left"><span class="ltx_text ltx_font_typewriter">imm[11:0] rs1 funct3 rd opcode</span></td>
+<td class="ltx_td ltx_align_left">Involves an immediate value, might be arithmetic or load operation</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">S-type</td>
+<td class="ltx_td ltx_align_left"><span class="ltx_text ltx_font_typewriter">imm[11:5] rs2 rs1 funct3 imm[4:0] opcode</span></td>
+<td class="ltx_td ltx_align_left">Store operation</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">B-type</td>
+<td class="ltx_td ltx_align_left"><span class="ltx_text ltx_font_typewriter">imm[12] imm[10:5] rs2 rs1 funct3 imm[4:1] imm[11] opcode</span></td>
+<td class="ltx_td ltx_align_left">Branch operation</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">U-type</td>
+<td class="ltx_td ltx_align_left"><span class="ltx_text ltx_font_typewriter">imm[31:12] rd opcode</span></td>
+<td class="ltx_td ltx_align_left">Load upper immediate</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">J-type</td>
+<td class="ltx_td ltx_align_left ltx_border_bb"><span class="ltx_text ltx_font_typewriter">imm[20] imm[10:1] imm[11] imm[19:12] rd opcode</span></td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Jump operation</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Note:</span> The immediate value for B-type and J-type instructions needs to be left-shifted by 1 bit, while the immediate value for U-type instructions needs to be left-shifted by 12 bits.</p>
+</div>
+<div id="S3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">More Info:</span>
+</p>
+</div>
+<div id="S3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">jalr</span> instruction is usually used to return from a procedure call. But it can also be used to jump to a far away address. For example, to jump to any 32-bit address, we can use the following code:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+    lui x1, &lt;upper 20 bits&gt;
+    jalr x0, x1, &lt;lower 12 bits&gt;
+</pre>
+</div>
+<div id="S3.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">If we want to jump to PC-relative address with 32-bit offset, we simply replace the <span class="ltx_text ltx_font_typewriter">lui</span> instruction above with <span class="ltx_text ltx_font_typewriter">auipc</span> instruction:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+    auipc x1, &lt;upper 20 bits&gt;
+    jalr x0, x1, &lt;lower 12 bits&gt;
+</pre>
+</div>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Performance</h2>
+
+<section id="S4.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.1 </span>Performance Metrics</h3>
+
+<div id="S4.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are two main performance metrics: response time and throughput. Response time is the time it takes to complete a task, while throughput is the number of tasks completed per unit time.</p>
+</div>
+<div id="S4.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, response time is not a good metric for performance evaluation because it includes all aspects of the system, such as the CPU, memory, and I/O devices. Instead, we usually use CPU time to evaluate the performance of a system, which is the time the CPU spends executing a task, excluding I/O time and other jobs’ share.</p>
+</div>
+</section>
+<section id="S4.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.2 </span>CPU Time</h3>
+
+<div id="S4.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">To calculate the CPU time, we use the following formula:</p>
+<table id="S4.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S4.Ex1.m1" class="ltx_Math" alttext="\text{CPU time}=\frac{\text{CPU clock cycles}}{\text{Clock rate}}=\frac{\text{Instruction Count}\times\text{CPI}}{\text{Clock rate}}" display="block"><mrow><mtext>CPU time</mtext><mo>=</mo><mfrac><mtext>CPU clock cycles</mtext><mtext>Clock rate</mtext></mfrac><mo>=</mo><mfrac><mrow><mtext>Instruction Count</mtext><mo>×</mo><mtext>CPI</mtext></mrow><mtext>Clock rate</mtext></mfrac></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S4.SS2.p2" class="ltx_para">
+<p class="ltx_p">The performance depends on the following factors:</p>
+</div>
+<figure id="S4.SS2.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Component</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">IC</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">CPI</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Clock Rate</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">Algorithm</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Yes</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Possible</td>
+<td class="ltx_td ltx_align_left ltx_border_t">No</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">Programming Language</td>
+<td class="ltx_td ltx_align_left">Yes</td>
+<td class="ltx_td ltx_align_left">Yes</td>
+<td class="ltx_td ltx_align_left">No</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">Compiler</td>
+<td class="ltx_td ltx_align_left">Yes</td>
+<td class="ltx_td ltx_align_left">Yes</td>
+<td class="ltx_td ltx_align_left">No</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">Instruction Set Architecture</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Yes</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Yes</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Yes</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Arithmetic</h2>
+
+<section id="S5.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.1 </span>Addition and Subtraction</h3>
+
+<div id="S5.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Addition overflows when the sum of two positive numbers is negative or the sum of two negative numbers is positive. Subtraction overflows when the difference of a positive number and a negative number is negative or the difference of a negative number and a positive number is positive.</p>
+</div>
+<section id="S5.SS1.SSS0.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Saturating Arithmetic</h5>
+
+<div id="S5.SS1.SSS0.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In saturating arithmetic, the result is set to the maximum or minimum value when an overflow occurs.</p>
+</div>
+</section>
+</section>
+<section id="S5.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.2 </span>Multiplication</h3>
+
+<div id="S5.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A primitive multiplier for <math id="S5.SS2.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit numbers consists of a <math id="S5.SS2.p1.m2" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit ALU, a <math id="S5.SS2.p1.m3" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the multiplicand, a <math id="S5.SS2.p1.m4" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the product, and an <math id="S5.SS2.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit register for the multiplier. The procedure is as follows:</p>
+<ol id="S5.I1" class="ltx_enumerate">
+<li id="S5.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S5.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Initialize the registers accordingly.</p>
+</div>
+</li>
+<li id="S5.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S5.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the least significant bit of the multiplier is 1, add the multiplicand to the product.</p>
+</div>
+</li>
+<li id="S5.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S5.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Shift the product left by 1 bit.</p>
+</div>
+</li>
+<li id="S5.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S5.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Shift the multiplier right by 1 bit.</p>
+</div>
+</li>
+<li id="S5.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S5.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Repeat steps 2 to 4 for <math id="S5.I1.i5.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> iterations.</p>
+</div>
+</li>
+<li id="S5.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">6.</span> 
+<div id="S5.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The product register contains the result.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S5.SS2.p2" class="ltx_para">
+<p class="ltx_p">Here is an example of multiplying 2 by 7:</p>
+</div>
+<figure id="S5.SS2.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Iteration</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Multiplier</span></th>
+<td class="ltx_td ltx_align_left ltx_border_tt"><span class="ltx_text ltx_font_bold">Multiplicand</span></td>
+<td class="ltx_td ltx_align_left ltx_border_tt"><span class="ltx_text ltx_font_bold">Product</span></td>
+<td class="ltx_td ltx_align_left ltx_border_tt"><span class="ltx_text ltx_font_bold">Operation</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0111</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0010</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Initialization</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">1</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0111</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0010</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0010</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0011</th>
+<td class="ltx_td ltx_align_left">0000_0100</td>
+<td class="ltx_td ltx_align_left">0000_0010</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">2</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0011</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0100</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0110</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0001</th>
+<td class="ltx_td ltx_align_left">0000_1000</td>
+<td class="ltx_td ltx_align_left">0000_0110</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">3</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0001</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_1000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_1110</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0000</th>
+<td class="ltx_td ltx_align_left">0001_0000</td>
+<td class="ltx_td ltx_align_left">0000_1110</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb ltx_border_t">4</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb ltx_border_t">0000</th>
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t">0010_0000</td>
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t">0000_1110</td>
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t">Shift registers</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S5.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">An optimized multiplier for <math id="S5.SS2.p3.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit numbers consists of an <math id="S5.SS2.p3.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit ALU, an <math id="S5.SS2.p3.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit register for the multiplicand, and a <math id="S5.SS2.p3.m4" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the product. The procedure is as follows:</p>
+<ol id="S5.I2" class="ltx_enumerate">
+<li id="S5.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S5.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Initialize the multiplicand register with the multiplier. Initialize the product register’s lower <math id="S5.I2.i1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with multiplier and the upper <math id="S5.I2.i1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with 0.</p>
+</div>
+</li>
+<li id="S5.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S5.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the least significant bit of the product register is 1, add the multiplicand to upper <math id="S5.I2.i2.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the product register.</p>
+</div>
+</li>
+<li id="S5.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S5.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Shift the product register right by 1 bit.</p>
+</div>
+</li>
+<li id="S5.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S5.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Repeat steps 2 and 3 for <math id="S5.I2.i4.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> iterations.</p>
+</div>
+</li>
+<li id="S5.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S5.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The product register contains the result.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S5.SS2.p4" class="ltx_para">
+<p class="ltx_p">Here is an example of multiplying 2 by 7:</p>
+</div>
+<figure id="S5.SS2.tab2" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Iteration</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Multiplicand</span></th>
+<td class="ltx_td ltx_align_left ltx_border_tt"><span class="ltx_text ltx_font_bold">Product</span></td>
+<td class="ltx_td ltx_align_left ltx_border_tt"><span class="ltx_text ltx_font_bold">Operation</span></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0111</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Initialization</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">1</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0010_0111</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_0011</td>
+<td class="ltx_td ltx_align_left">Shift right</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">2</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0011_0011</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_1001</td>
+<td class="ltx_td ltx_align_left">Shift right</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">3</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0011_1001</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Add multiplicand</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_1100</td>
+<td class="ltx_td ltx_align_left">Shift right</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb ltx_border_t">4</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t">0000_1110</td>
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t">Shift right</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S5.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">5.3 </span>Division</h3>
+
+<div id="S5.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A primitive divider for <math id="S5.SS3.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit numbers consists of a <math id="S5.SS3.p1.m2" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit ALU, a <math id="S5.SS3.p1.m3" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the divisor, a <math id="S5.SS3.p1.m4" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the remainder, and an <math id="S5.SS3.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit register for the quotient. The procedure is as follows:</p>
+<ol id="S5.I3" class="ltx_enumerate">
+<li id="S5.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S5.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Initialize the divisor register’s upper <math id="S5.I3.i1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with the divisor and the lower <math id="S5.I3.i1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with 0. Initialize the remainder register’s lower <math id="S5.I3.i1.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with the dividend and the upper <math id="S5.I3.i1.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with 0. Initialize the quotient register with 0.</p>
+</div>
+</li>
+<li id="S5.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S5.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Subtract the divisor from the remainder.</p>
+</div>
+</li>
+<li id="S5.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S5.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the result is negative, add the divisor back to the remainder. Shift the quotient left by 1 bit and add 0 to the least significant bit. Else, shift the quotient left by 1 bit and add 1 to the least significant bit.</p>
+</div>
+</li>
+<li id="S5.I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S5.I3.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Shift the divisor right by 1 bit.
+</p>
+</div>
+</li>
+<li id="S5.I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S5.I3.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Repeat steps 2 to 4 for <math id="S5.I3.i5.p1.m1" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> iterations.</p>
+</div>
+</li>
+<li id="S5.I3.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">6.</span> 
+<div id="S5.I3.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The quotient register contains the quotient, and the remainder register contains the remainder.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S5.SS3.p2" class="ltx_para">
+<p class="ltx_p">Here is an example of dividing 7 by 2:</p>
+</div>
+<figure id="S5.SS3.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Iteration</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Divisor</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Remainder</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Quotient</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Operation</span></th>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">0</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">0010_0000</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">0000_0111</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">0000</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">Initialization</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t" rowspan="3">1</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0010_0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">1110_0111</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0010_0000</td>
+<td class="ltx_td ltx_align_left">0000_0111</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Restore</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0001_0000</td>
+<td class="ltx_td ltx_align_left">0000_0000</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t" rowspan="3">2</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0001_0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">1111_0111</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0001_0000</td>
+<td class="ltx_td ltx_align_left">0000_0111</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Restore</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_1000</td>
+<td class="ltx_td ltx_align_left">0000_0000</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t" rowspan="3">3</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_1000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">1111_1111</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_1000</td>
+<td class="ltx_td ltx_align_left">0000_0111</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Restore</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_0100</td>
+<td class="ltx_td ltx_align_left">0000_0000</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t" rowspan="3">4</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0100</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0011</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_0010</td>
+<td class="ltx_td ltx_align_left">0000_0011</td>
+<td class="ltx_td ltx_align_left">0000</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_0010</td>
+<td class="ltx_td ltx_align_left">0000_0011</td>
+<td class="ltx_td ltx_align_left">0001</td>
+<td class="ltx_td ltx_align_left">Add 1 to quotient</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb ltx_border_t" rowspan="3">5</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0010</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_0001</td>
+<td class="ltx_td ltx_align_left ltx_border_t">0001</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">0000_0001</td>
+<td class="ltx_td ltx_align_left">0000_0001</td>
+<td class="ltx_td ltx_align_left">0010</td>
+<td class="ltx_td ltx_align_left">Shift registers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">0000_0001</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">0000_0001</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">0011</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Add 1 to quotient</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S5.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">An optimized divider for <math id="S5.SS3.p3.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit numbers consists of an <math id="S5.SS3.p3.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit ALU, an <math id="S5.SS3.p3.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-bit register for the divisor, and a <math id="S5.SS3.p3.m4" class="ltx_Math" alttext="2n" display="inline"><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow></math>-bit register for the remainder. The procedure is as follows:</p>
+<ol id="S5.I4" class="ltx_enumerate">
+<li id="S5.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S5.I4.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Initialize the divisor register with the divisor. Initialize the lower <math id="S5.I4.i1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the remainder register with the dividend and the upper <math id="S5.I4.i1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits with 0.</p>
+</div>
+</li>
+<li id="S5.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S5.I4.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Shift the remainder register left by 1 bit.</p>
+</div>
+</li>
+<li id="S5.I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S5.I4.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Subtract the upper <math id="S5.I4.i3.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the remainder register from the divisor.</p>
+</div>
+</li>
+<li id="S5.I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S5.I4.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the result is negative, add the divisor back to the upper <math id="S5.I4.i4.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the remainder register, else add 1 to the lower <math id="S5.I4.i4.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the remainder register.</p>
+</div>
+</li>
+<li id="S5.I4.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S5.I4.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Repeat steps 2 to 4 for <math id="S5.I4.i5.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> iterations.</p>
+</div>
+</li>
+<li id="S5.I4.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">6.</span> 
+<div id="S5.I4.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The lower <math id="S5.I4.i6.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits of the remainder register contain the quotient, and the upper <math id="S5.I4.i6.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> bits contain the remainder.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S5.SS3.p4" class="ltx_para">
+<p class="ltx_p">Here is an example of dividing 7 by 2:</p>
+</div>
+<figure id="S5.SS3.tab2" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Iteration</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Divisor</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Remainder</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Operation</span></th>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t">0</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t">0010</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">0000_0111</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">Initialization</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">1</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0000_1110</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Shift left</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">1110_1110</td>
+<td class="ltx_td ltx_align_left">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_row"></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0000_1110</td>
+<td class="ltx_td ltx_align_left">Restore</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">2</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0001_1100</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Shift left</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">1111_1100</td>
+<td class="ltx_td ltx_align_left">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_row"></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_1100</td>
+<td class="ltx_td ltx_align_left">Restore</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">3</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0011_1000</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Shift left</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_1000</td>
+<td class="ltx_td ltx_align_left">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_row"></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_1001</td>
+<td class="ltx_td ltx_align_left">Add 1</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">4</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_t">0011_0010</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Shift left</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">0010</th>
+<td class="ltx_td ltx_align_left">0001_0010</td>
+<td class="ltx_td ltx_align_left">Subtract divisor</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_row ltx_border_bb"></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">0010</th>
+<td class="ltx_td ltx_align_left ltx_border_bb">0001_0011</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Add 1</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<section id="S5.SS3.SSS0.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Sign Convention</h5>
+
+<div id="S5.SS3.SSS0.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In signed division, the sign of the quotient is negative if and only if the signs of the dividend and divisor are different. The remainder has the same sign as the dividend. For example, <math id="S5.SS3.SSS0.Px1.p1.m1" class="ltx_Math" alttext="-7\div 2=-3\dots-1" display="inline"><mrow><mrow><mo>-</mo><mrow><mn>7</mn><mo>÷</mo><mn>2</mn></mrow></mrow><mo>=</mo><mrow><mrow><mo>-</mo><mrow><mn>3</mn><mo>⁢</mo><mi mathvariant="normal">⋯</mi></mrow></mrow><mo>-</mo><mn>1</mn></mrow></mrow></math>.
+</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Floating Point Arithmetic</h2>
+
+<section id="S6.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.1 </span>Floating Point Representation</h3>
+
+<div id="S6.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A floating point number consists of three parts: the sign bit, the exponent, and the fraction (mantissa). The value of the number is:</p>
+<table id="S6.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S6.Ex2.m1" class="ltx_Math" alttext="(-1)^{s}\times 2^{e-B}\times 1.f" display="block"><mrow><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mi>s</mi></msup><mo>×</mo><msup><mn>2</mn><mrow><mi>e</mi><mo>-</mo><mi>B</mi></mrow></msup><mo>×</mo><mn>1</mn></mrow><mo>.</mo><mi>f</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="S6.SS1.p1.m1" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> is the sign bit, <math id="S6.SS1.p1.m2" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> is the exponent, <math id="S6.SS1.p1.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is the bias, and <math id="S6.SS1.p1.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is the fraction.</p>
+</div>
+<section id="S6.SS1.SSS0.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Bias</h5>
+
+<div id="S6.SS1.SSS0.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The bias is calculated as <math id="S6.SS1.SSS0.Px1.p1.m1" class="ltx_Math" alttext="2^{k-1}-1" display="inline"><mrow><msup><mn>2</mn><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msup><mo>-</mo><mn>1</mn></mrow></math>, where <math id="S6.SS1.SSS0.Px1.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> is the number of bits used to represent the exponent. The purpose of the bias is to treat the exponent as an unsigned number.</p>
+</div>
+</section>
+<section id="S6.SS1.SSS0.Px2" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Relative Precision</h5>
+
+<div id="S6.SS1.SSS0.Px2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The relative precision is <math id="S6.SS1.SSS0.Px2.p1.m1" class="ltx_Math" alttext="2^{-f}" display="inline"><msup><mn>2</mn><mrow><mo>-</mo><mi>f</mi></mrow></msup></math>, where <math id="S6.SS1.SSS0.Px2.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is the number of bits used to represent the fraction. To convert the relative precision to the number of decimal places, we use the formula <math id="S6.SS1.SSS0.Px2.p1.m3" class="ltx_Math" alttext="-\log_{10}(2^{-f})=f\times\log_{10}2" display="inline"><mrow><mrow><mo>-</mo><mrow><msub><mi>log</mi><mn>10</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mrow><mo>-</mo><mi>f</mi></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>×</mo><mrow><msub><mi>log</mi><mn>10</mn></msub><mo>⁡</mo><mn>2</mn></mrow></mrow></mrow></math>.</p>
+</div>
+</section>
+</section>
+<section id="S6.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.2 </span>Floating Point Special Encoding</h3>
+
+<div id="S6.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are three special encodings for floating point numbers: zero, infinity, and NaN (Not a Number). Zero is represented by all bits being 0, infinity is represented by the exponent being all 1s and the fraction being 0, and NaN is represented by the exponent being all 1s and the fraction being non-zero. To be noticed, there are two types of infinity: positive and negative (determined by the sign bit).</p>
+</div>
+<div id="S6.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">There is also a denormalized representation for floating point numbers. In this representation, the exponent is 0, and the fraction is non-zero. The value of the number is:</p>
+<table id="S6.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S6.Ex3.m1" class="ltx_Math" alttext="(-1)^{s}\times 2^{1-B}\times 0.f" display="block"><mrow><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mi>s</mi></msup><mo>×</mo><msup><mn>2</mn><mrow><mn>1</mn><mo>-</mo><mi>B</mi></mrow></msup><mo>×</mo><mn>0</mn></mrow><mo>.</mo><mi>f</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S6.SS2.p3" class="ltx_para">
+<p class="ltx_p">The overall representation of floating point numbers is as follows:
+</p>
+</div>
+<figure id="S6.SS2.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Exponent</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Fraction = 0</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Fraction <math id="S6.SS2.m1" class="ltx_Math" alttext="\neq" display="inline"><mo mathvariant="normal">≠</mo></math> 0</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">0</td>
+<td class="ltx_td ltx_align_left ltx_border_t"><math id="S6.SS2.m2" class="ltx_Math" alttext="\pm 0" display="inline"><mrow><mo>±</mo><mn>0</mn></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_border_t">Denormalized</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">1 to <math id="S6.SS2.m3" class="ltx_Math" alttext="2^{k}-2" display="inline"><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>-</mo><mn>2</mn></mrow></math>
+</td>
+<td class="ltx_td ltx_align_left">Normalized</td>
+<td class="ltx_td ltx_align_left">Normalized</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb"><math id="S6.SS2.m4" class="ltx_Math" alttext="2^{k}-1" display="inline"><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>-</mo><mn>1</mn></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_border_bb"><math id="S6.SS2.m5" class="ltx_Math" alttext="\pm\infty" display="inline"><mrow><mo>±</mo><mi mathvariant="normal">∞</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_border_bb">NaN</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S6.SS2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">Easy to Mistake:</span>
+</p>
+</div>
+<div id="S6.SS2.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">When calculating the range of a normalized floating point number, we need to be careful with the exponent. The minimum exponent is 1, and the maximum exponent is <math id="S6.SS2.p5.m1" class="ltx_Math" alttext="2^{k}-2" display="inline"><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>-</mo><mn>2</mn></mrow></math>. 0 and <math id="S6.SS2.p5.m2" class="ltx_Math" alttext="2^{k}-1" display="inline"><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>-</mo><mn>1</mn></mrow></math> are reserved for special encodings.</p>
+</div>
+</section>
+<section id="S6.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.3 </span>Floating Point Arithmetic</h3>
+
+<div id="S6.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The procedure for floating point addition and subtraction is as follows:</p>
+<ol id="S6.I1" class="ltx_enumerate">
+<li id="S6.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S6.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Align the exponents of the two numbers, the final exponent is the larger of the two exponents.</p>
+</div>
+</li>
+<li id="S6.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S6.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Add or subtract the significands of the two numbers.
+</p>
+</div>
+</li>
+<li id="S6.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S6.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Normalize the result (shift the significand until <math id="S6.I1.i3.p1.m1" class="ltx_Math" alttext="1\leq|f|&lt;2" display="inline"><mrow><mn>1</mn><mo>≤</mo><mrow><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mn>2</mn></mrow></math>).</p>
+</div>
+</li>
+<li id="S6.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S6.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Round the result (and renormalize if necessary).</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S6.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The procedure for floating point multiplication is as follows:</p>
+<ol id="S6.I2" class="ltx_enumerate">
+<li id="S6.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S6.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Add the exponents of the two numbers.</p>
+</div>
+</li>
+<li id="S6.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S6.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Multiply the significands of the two numbers.</p>
+</div>
+</li>
+<li id="S6.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S6.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Normalize the result (shift the significand until <math id="S6.I2.i3.p1.m1" class="ltx_Math" alttext="1\leq|f|&lt;2" display="inline"><mrow><mn>1</mn><mo>≤</mo><mrow><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mn>2</mn></mrow></math>).</p>
+</div>
+</li>
+<li id="S6.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S6.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Round the result (and renormalize if necessary).</p>
+</div>
+</li>
+<li id="S6.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S6.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Determine the sign of the result.</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+</section>
+<section id="S7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">7 </span>Pipeline</h2>
+
+<section id="S7.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.1 </span>Inefficiency of Single Cycle CPU</h3>
+
+<div id="S7.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a single cycle CPU, the clock cycle is determined by the slowest instruction (the longest delay). This means most module will be idle for most of the time, which is inefficient.</p>
+</div>
+</section>
+<section id="S7.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.2 </span>Pipeline Performance</h3>
+
+<div id="S7.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Suppose all stages are balanced, the speedup of a pipeline is given by:</p>
+<table id="S7.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S7.Ex4.m1" class="ltx_Math" alttext="\text{Clock Cycle Time}_{\text{pipelined}}=\frac{\text{Clock Cycle Time}_{\text{non-pipelined}}}{\text{Number of Stages}}" display="block"><mrow><msub><mtext>Clock Cycle Time</mtext><mtext>pipelined</mtext></msub><mo>=</mo><mfrac><msub><mtext>Clock Cycle Time</mtext><mtext>non-pipelined</mtext></msub><mtext>Number of Stages</mtext></mfrac></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S7.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed that the latency (time to complete a single instruction) of a pipelined CPU will not be reduced. In fact, the latency may increase especially when stages are not balanced. Pipeline is more about throughput (number of instructions completed per unit time) than latency.</p>
+</div>
+</section>
+<section id="S7.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.3 </span>Pipeline Hazards</h3>
+
+<div id="S7.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are three types of pipeline hazards: structural hazards, data hazards, and control hazards.</p>
+<ul id="S7.I1" class="ltx_itemize">
+<li id="S7.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Structural hazards: Two instructions require the same hardware resource.</p>
+</div>
+</li>
+<li id="S7.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Data hazards: The next instruction to execute requires the result of the current instruction.</p>
+</div>
+</li>
+<li id="S7.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Control hazards: Which instruction to execute next is determined by the result of the current instruction.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S7.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The structure hazards do not occur in RISC-V, because the ISA is designed under Harvard architecture (separate instruction and data memory). This avoids the conflict between instruction fetch and data access. The two other hazards, however, still exist.</p>
+</div>
+<section id="S7.SS3.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.3.1 </span>Data Hazards</h4>
+
+<div id="S7.SS3.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Generally, we solve data hazards by either stalling the pipeline or forwarding the data, sometimes a combination of both.</p>
+</div>
+<section id="S7.SS3.SSS1.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Stall Only</h5>
+
+<div id="S7.SS3.SSS1.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When stalling the pipeline, we insert a no-operation (NOP) instruction to the pipeline. This is the simplest way to solve data hazards, but it is also the least efficient.</p>
+</div>
+</section>
+<section id="S7.SS3.SSS1.Px2" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Forwarding Only</h5>
+
+<div id="S7.SS3.SSS1.Px2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We add extra data path to forward the data from the output of the ALU (or memory) to the input of the ALU. Forwarding data from ALU to ALU is called EX-EX forwarding (or ALU-ALU forwarding), while forwarding data from memory to ALU is called MEM-EX forwarding (or MEM-ALU forwarding). However, this method is not always applicable (cannot handle load-use hazards).</p>
+</div>
+</section>
+<section id="S7.SS3.SSS1.Px3" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Stall and Forwarding</h5>
+
+<div id="S7.SS3.SSS1.Px3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We stall the pipeline only when forwarding is not possible (load-use hazards), which requires more modules for hazard detection and control.</p>
+</div>
+<figure id="S7.F1" class="ltx_figure"><img src="{{ site.baseurl }}/images/2024-07-27-Computer-Organization-Final-Review-Note-fig2.png" id="S7.F1.g1" class="ltx_graphics ltx_centering" width="432" height="408" alt="Stall and Forwarding for Load-Use Hazards">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>Stall and Forwarding for Load-Use Hazards</figcaption>
+</figure>
+</section>
+</section>
+<section id="S7.SS3.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.3.2 </span>Control Hazards</h4>
+
+<div id="S7.SS3.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Generally, we solve control hazards by stalling and flushing the pipeline. When a branch instruction is detected, we stall the pipeline (by inserting NOPs or filling the pipeline with predicted instructions). After we know the result of the branch instruction, we can check if the prediction is correct. If it is not, we flush the pipeline (discard the instructions after the branch instruction) and restart the pipeline.</p>
+</div>
+<div id="S7.SS3.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If extra hardware is available, we can determine the branch target early in the instruction decode stage and reduce the number of stalls.</p>
+</div>
+<section id="S7.SS3.SSS2.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Static and Dynamic Branch Prediction</h5>
+
+<div id="S7.SS3.SSS2.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In static branch prediction, the prediction is made at compile time by the compiler. In dynamic branch prediction, the prediction is made at run time by looking at the history of the branch instruction.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="S8" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">8 </span>Instruction-Level Parallelism</h2>
+
+<section id="S8.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.1 </span>Deeper Pipeline</h3>
+
+<div id="S8.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If we further break down the process and hence have more stages in the pipeline, we can achieve shorter clock cycle time (please refer to Section <a href="#S7.SS2" title="7.2 Pipeline Performance ‣ 7 Pipeline" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7.2</span></a>).</p>
+</div>
+</section>
+<section id="S8.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.2 </span>Multiple Issue</h3>
+
+<div id="S8.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Multiple issue means execute multiple instructions in parallel in a single clock cycle (This may cause CPI to be less than 1. If so we use IPC, Instructions Per Cycle). The key procedure of multiple issue is to resolve instruction dependencies and pack instructions into issue packets.</p>
+</div>
+<section id="S8.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">8.2.1 </span>Static Multiple Issue</h4>
+
+<div id="S8.SS2.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In static multiple issue, compilers is responsible for reordering the instructions to avoid hazards. This is also called Very Long Instruction Word (VLIW) architecture.</p>
+</div>
+<section id="S8.SS2.SSS1.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Data Dependencies</h5>
+
+<div id="S8.SS2.SSS1.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">It is obvious that two instructions that one depends on the other cannot be issued in parallel. For example, a load instruction that requires the address calculated by the previous instruction.</p>
+</div>
+</section>
+<section id="S8.SS2.SSS1.Px2" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Hardware Race</h5>
+
+<div id="S8.SS2.SSS1.Px2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The critical problem for hardware is that the data memory can only be accessed once in a clock cycle. Hence, two instructions that both require data memory access cannot be issued in parallel. This is why the issue packet is designed to have one slot for ALU / Branch instruction (which does not require data memory access) and one slot for Load / Store instruction (which requires data memory access).</p>
+</div>
+<div id="S8.SS2.SSS1.Px2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">Example:</span>
+</p>
+</div>
+<div id="S8.SS2.SSS1.Px2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">For this loop assembly code:</p>
+<table class="ltx_tabular ltx_centering ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_tt">lw</td>
+<td class="ltx_td ltx_align_left ltx_border_tt">t0, 0(s1)</td>
+<td class="ltx_td ltx_align_left ltx_border_tt">s1 is pointer to the array</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">add</td>
+<td class="ltx_td ltx_align_left">t0, t0, s2</td>
+<td class="ltx_td ltx_align_left">add a constant to the arrayelement</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">sw</td>
+<td class="ltx_td ltx_align_left">t0, 0(s1)</td>
+<td class="ltx_td ltx_align_left">store the result back to the array</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">addi</td>
+<td class="ltx_td ltx_align_left">s1, s1, -4</td>
+<td class="ltx_td ltx_align_left">move to the next element</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">bge</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">s1, zero, loop</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">loop back</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="S8.SS2.SSS1.Px2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">The optimal reordering for an 2-issue processor will have an IPC of 1.25:
+</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt">ALU / Branch</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt">Load / Store</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">nop</td>
+<td class="ltx_td ltx_align_left ltx_border_t">lw t0, 0(s1)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">addi s1, s1, -4</td>
+<td class="ltx_td ltx_align_left">nop</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">add t0, t0, s2</td>
+<td class="ltx_td ltx_align_left">nop</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">bge s1, zero, loop</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">sw t0, 0(s1)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="S8.SS2.SSS1.Px2.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed that the <span class="ltx_text ltx_font_typewriter">add</span> and <span class="ltx_text ltx_font_typewriter">addi</span>instructions cannot be swaped, otherwise it will cause a load-use hazard.</p>
+</div>
+</section>
+<section id="S8.SS2.SSS1.Px3" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Loop Unrolling</h5>
+
+<div id="S8.SS2.SSS1.Px3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">One technique to resolve name dependencies is Loop Unrolling. For example, if we have a loop that loads an element from an array, perform some operations, and store the result back to the array, and the loop is executed for 4 times. This loop cannot be issued in parallel because the loop body use the same register and every instruction depends on this register. This is so-called name dependencies, because the dependencies is not caused by data but reusing register name. To resolve this, we can unroll the loop, which means we copy the loop body 4 times and change the register name for each copy. This way, the instructions in different loop bodies can be issued in parallel.</p>
+</div>
+<div id="S8.SS2.SSS1.Px3.p2" class="ltx_para ltx_noindent">
+<pre class="ltx_verbatim ltx_font_typewriter">
+    // Original Loop
+    for (int i = 0; i &lt; 4; i++) {
+        A[i] = A[i] + 1; // use the same register to hold A[i]
+    }
+
+    // Unrolled Loop
+    A[0] = A[0] + 1; // use different register for A[0], A[1], A[2], A[3]
+    A[1] = A[1] + 1;
+    A[2] = A[2] + 1;
+    A[3] = A[3] + 1;
+</pre>
+</div>
+</section>
+</section>
+<section id="S8.SS2.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">8.2.2 </span>Dynamic Multiple Issue</h4>
+
+<div id="S8.SS2.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In dynamic multiple issue, the CPU examines the instruction stream and decides which instructions to execute in parallel. This is also called “Superscalar” architecture.</p>
+</div>
+<section id="S8.SS2.SSS2.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Out-of-Order Execution</h5>
+
+<div id="S8.SS2.SSS2.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In out-of-order execution, the CPU executes the instructions in the order that minimizes the pipeline stalls. It Involves three steps: in-order issue: issue the instructions to the reservation station in order; out-of-order execution: execute the instructions in the reservation station whenever the operands are ready; in-order commit: commit the instructions in order to the register file.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S8.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.3 </span>Speculative Execution</h3>
+
+<div id="S8.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In speculative execution, the CPU executes the instructions before it knows whether they should be executed. This is used to reduce the branch penalty. Additionally, this helps load cache data before it is needed.</p>
+</div>
+</section>
+<section id="S8.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">8.4 </span>Register Renaming</h3>
+
+<div id="S8.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Register renaming is used to resolve the name dependencies. The CPU uses a physical register file to store the data, and a mapping table to map the logical register to the physical register. This way, the CPU can issue the instructions in parallel even if they use the same logical register.</p>
+</div>
+</section>
+</section>
+<section id="S9" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">9 </span>Memory Hierarchy</h2>
+
+<section id="S9.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.1 </span>Cache</h3>
+
+<section id="S9.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.1.1 </span>Direct Mapped Cache</h4>
+
+<div id="S9.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a direct mapped cache, each memory block can only be stored in one specific cache block. The cache block is determined by the lower bits of the memory block address. The cache block consists of the tag, the index, the valid bit, and the data, and the number of bits in each part is calculated as follows:</p>
+<table id="S10.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex5"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex5.m1" class="ltx_Math" alttext="\displaystyle\#\text{Offset bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Offset bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex5.m2" class="ltx_Math" alttext="\displaystyle=\log_{2}(\text{Block Size})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mtext>Block Size</mtext><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex6"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex6.m1" class="ltx_Math" alttext="\displaystyle\#\text{Index bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Index bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex6.m2" class="ltx_Math" alttext="\displaystyle=\log_{2}(\text{Number of Blocks})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mtext>Number of Blocks</mtext><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex7"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex7.m1" class="ltx_Math" alttext="\displaystyle\#\text{Tag bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Tag bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex7.m2" class="ltx_Math" alttext="\displaystyle=\text{Address bits}-\text{Offset bits}-\text{Index bits}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mtext>Address bits</mtext><mo>-</mo><mtext>Offset bits</mtext><mo>-</mo><mtext>Index bits</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S9.SS1.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">Easy to Mistake:</span>
+</p>
+</div>
+<div id="S9.SS1.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">For fixed-sized cache, increasing the block size may not necessarily reduce the miss rate. This is because the larger block size will decrease the number of blocks in the cache, which may lead to more conflicts. Also, the larger block size will increase the miss penalty (the time to load a block from memory to cache).</p>
+</div>
+</section>
+<section id="S9.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.1.2 </span>Set Associative Cache</h4>
+
+<div id="S9.SS1.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a set associative cache, several cache blocks are mapped to the same set. Each memory block can only be stored in one of the cache set but can be stored in any block within the set. The cache block consists of the tag, the index (set), the valid bit, and the data, and the number of bits in each part is calculated as follows:</p>
+<table id="S10.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex8"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex8.m1" class="ltx_Math" alttext="\displaystyle\#\text{Offset bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Offset bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex8.m2" class="ltx_Math" alttext="\displaystyle=\log_{2}(\text{Block Size})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mtext>Block Size</mtext><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex9"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex9.m1" class="ltx_Math" alttext="\displaystyle\#\text{Index bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Index bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex9.m2" class="ltx_Math" alttext="\displaystyle=\log_{2}(\text{Number of Sets})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mtext>Number of Sets</mtext><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex10"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex10.m1" class="ltx_Math" alttext="\displaystyle\#\text{Tag bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Tag bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex10.m2" class="ltx_Math" alttext="\displaystyle=\text{Address bits}-\text{Offset bits}-\text{Index bits}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mtext>Address bits</mtext><mo>-</mo><mtext>Offset bits</mtext><mo>-</mo><mtext>Index bits</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</section>
+<section id="S9.SS1.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.1.3 </span>Fully Associative Cache</h4>
+
+<div id="S9.SS1.SSS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a fully associative cache, each memory block can be stored in any cache block. The cache block consists of the tag, the valid bit, and the data, and the number of bits in each part is calculated as follows:
+</p>
+<table id="S10.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex11"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex11.m1" class="ltx_Math" alttext="\displaystyle\#\text{Offset bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Offset bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex11.m2" class="ltx_Math" alttext="\displaystyle=\log_{2}(\text{Block Size})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mtext>Block Size</mtext><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex12"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex12.m1" class="ltx_Math" alttext="\displaystyle\#\text{Tag bits}" display="inline"><mrow><mi mathvariant="normal">#</mi><mo>⁢</mo><mtext>Tag bits</mtext></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex12.m2" class="ltx_Math" alttext="\displaystyle=\text{Address bits}-\text{Offset bits}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mtext>Address bits</mtext><mo>-</mo><mtext>Offset bits</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</section>
+<section id="S9.SS1.SSS4" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.1.4 </span>Multi-Level Cache</h4>
+
+<div id="S9.SS1.SSS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a multi-level cache, we put the L1 cache (smaller but faster) closer to the CPU and the L2 cache (larger but slower) further away. This layout effectively reduces the miss rate.</p>
+</div>
+<div id="S9.SS1.SSS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">More Info:</span>
+</p>
+</div>
+<div id="S9.SS1.SSS4.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The overall storage system can be viewed as a huge multi-level cache, consisting of the CPU registers, the L1 cache, the L2 cache, the main memory, and the disk. The closer the storage is to the CPU, the faster but smaller it is.</p>
+</div>
+</section>
+<section id="S9.SS1.SSS5" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.1.5 </span>Pros and Cons of Different Cache</h4>
+
+<div id="S9.SS1.SSS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Generally, the higher the associativity, the lower the miss rate. However, to achieve higher associativity, we need more hardware (comparators, etc.), which increases the cost of the cache and the access time.</p>
+</div>
+</section>
+</section>
+<section id="S9.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.2 </span>Cache Miss</h3>
+
+<div id="S9.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are three types of cache miss: compulsory miss, capacity miss, and conflict miss.</p>
+<ul id="S9.I1" class="ltx_itemize">
+<li id="S9.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Compulsory miss: On startup, the cache is empty, so the first access to a memory block will always miss.</p>
+</div>
+</li>
+<li id="S9.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Capacity miss: The cache is full. Hence, any new memory block must replace an existing block.
+</p>
+</div>
+</li>
+<li id="S9.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Conflict miss: Although the cache is not full, the memory block cannot be stored in the cache because of the block (or set) it maps to is already occupied (only for set associative or direct mapped cache).</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S9.SS2.p2" class="ltx_para">
+<p class="ltx_p">We can optimize the cache design to reduce the miss rate. Below are some common trade-offs:</p>
+</div>
+<figure id="S9.SS2.tab1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Trade-off</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Pros</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_tt"><span class="ltx_text ltx_font_bold">Cons</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">Increase cache size</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Reduce capacity miss</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Higher access time</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">Increase associativity</td>
+<td class="ltx_td ltx_align_left">Reduce conflict miss</td>
+<td class="ltx_td ltx_align_left">Higher access time and extra hardware</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_bb">Increase block size</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Reduce compulsory miss</td>
+<td class="ltx_td ltx_align_left ltx_border_bb">Higher miss penalty</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S9.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.3 </span>Write Policy</h3>
+
+<div id="S9.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">On write hit (the memory block we want to write is already in the cache), we can use write-through or write-back policy.</p>
+<ul id="S9.I2" class="ltx_itemize">
+<li id="S9.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Write-through: The data is written to both the cache and the memory. This is simpler but slower.</p>
+</div>
+</li>
+<li id="S9.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Write-back: The data is written to the cache only. The data in the memory is updated only when the cache block is replaced. This is faster but more complex and require an extra dirty bit (to indicate whether the cache block is modified) for each cache block.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S9.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">On write miss (the memory block we want to write is not in the cache), we can use write-allocate or write-around policy.</p>
+<ul id="S9.I3" class="ltx_itemize">
+<li id="S9.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Write-allocate: The memory block is loaded into the cache and then the data is written to the cache.</p>
+</div>
+</li>
+<li id="S9.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S9.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Write-around: The data is written to the memory only. The cache is not updated.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S9.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.4 </span>Cache Performance</h3>
+
+<div id="S9.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The cache performance is evaluated by Average Memory Access Time (AMAT), which is calculated as follows:</p>
+<table id="S9.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S9.Ex13.m1" class="ltx_Math" alttext="\text{AMAT}=\text{Hit Time}+\text{Miss Rate}\times\text{Miss Penalty}" display="block"><mrow><mtext>AMAT</mtext><mo>=</mo><mrow><mtext>Hit Time</mtext><mo>+</mo><mrow><mtext>Miss Rate</mtext><mo>×</mo><mtext>Miss Penalty</mtext></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S9.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">For multi-level cache, the miss rate is divided into each level, and sometimes calculated within the level (local miss rate) or globally (global miss rate). The difference is shown as follows:</p>
+<table id="S10.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex14"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex14.m1" class="ltx_Math" alttext="\displaystyle\text{Global Miss Rate for level}_{i}" display="inline"><msub><mtext>Global Miss Rate for level</mtext><mi>i</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex14.m2" class="ltx_Math" alttext="\displaystyle=\frac{\text{Total number of misses on level}_{i}}{\text{Total %
+number of block requests}}" display="inline"><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><msub><mtext>Total number of misses on level</mtext><mi>i</mi></msub><mtext>Total number of block requests</mtext></mfrac></mstyle></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex15"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S9.Ex15.m1" class="ltx_Math" alttext="\displaystyle\text{Local Miss Rate for level}_{i}" display="inline"><msub><mtext>Local Miss Rate for level</mtext><mi>i</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex15.m2" class="ltx_Math" alttext="\displaystyle=\frac{\text{Number of misses on level}_{i}}{\text{Number of %
+block requests on level}_{i}}" display="inline"><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><msub><mtext>Number of misses on level</mtext><mi>i</mi></msub><msub><mtext>Number of block requests on level</mtext><mi>i</mi></msub></mfrac></mstyle></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<div id="S9.SS4.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The AMAT for multi-level cache is calculated by using the global miss rate:</p>
+<table id="S10.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex16"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">AMAT</span></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex16.m2" class="ltx_Math" alttext="\displaystyle=\text{L1 Hit Time}" display="inline"><mrow><mi></mi><mo>=</mo><mtext>L1 Hit Time</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex17"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex17.m1" class="ltx_Math" alttext="\displaystyle+\text{L1 Global Miss Rate}\times\text{L1 Miss Penalty}" display="inline"><mrow><mo>+</mo><mrow><mtext>L1 Global Miss Rate</mtext><mo>×</mo><mtext>L1 Miss Penalty</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex18"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex18.m1" class="ltx_Math" alttext="\displaystyle+\text{L2 Global Miss Rate}\times\text{L2 Miss Penalty}" display="inline"><mrow><mo>+</mo><mrow><mtext>L2 Global Miss Rate</mtext><mo>×</mo><mtext>L2 Miss Penalty</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">or by using the local miss rate:</p>
+<table id="S10.EGx6" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S9.Ex19"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">AMAT</span></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex19.m2" class="ltx_Math" alttext="\displaystyle=\text{L1 Hit Time}" display="inline"><mrow><mi></mi><mo>=</mo><mtext>L1 Hit Time</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex20"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex20.m1" class="ltx_Math" alttext="\displaystyle+\text{L1 Local Miss Rate}" display="inline"><mrow><mo>+</mo><mtext>L1 Local Miss Rate</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S9.Ex21"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S9.Ex21.m1" class="ltx_Math" alttext="\displaystyle\times\left(\text{L1 Miss Penalty}+\text{L2 Local Miss Rate}%
+\times\text{L2 Miss Penalty}\right)" display="inline"><mrow><mi></mi><mo>×</mo><mrow><mo>(</mo><mrow><mtext>L1 Miss Penalty</mtext><mo>+</mo><mrow><mtext>L2 Local Miss Rate</mtext><mo>×</mo><mtext>L2 Miss Penalty</mtext></mrow></mrow><mo>)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+</section>
+<section id="S9.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.5 </span>Dependability Measures</h3>
+
+<div id="S9.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are three metrics to evaluate the dependability of a cache: mean time to failure (MTTF), mean time to repair (MTTR), and availability. The availability is calculated as follows:</p>
+<table id="S9.Ex22" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S9.Ex22.m1" class="ltx_Math" alttext="\text{Availability}=\frac{\text{MTTF}}{\text{MTTF}+\text{MTTR}}" display="block"><mrow><mtext>Availability</mtext><mo>=</mo><mfrac><mtext>MTTF</mtext><mrow><mtext>MTTF</mtext><mo>+</mo><mtext>MTTR</mtext></mrow></mfrac></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</section>
+<section id="S9.SS6" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.6 </span>Error Detection and Correction</h3>
+
+<section id="S9.SS6.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.6.1 </span>Hamming Distance</h4>
+
+<div id="S9.SS6.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The Hamming distance is the minimum number of bit flips required to convert one valid pattern to another.</p>
+</div>
+<div id="S9.SS6.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">For Hamming distance <math id="S9.SS6.SSS1.p2.m1" class="ltx_Math" alttext="d=2" display="inline"><mrow><mi>d</mi><mo>=</mo><mn>2</mn></mrow></math>, this allows single-bit error detection. For Hamming distance <math id="S9.SS6.SSS1.p2.m2" class="ltx_Math" alttext="d=3" display="inline"><mrow><mi>d</mi><mo>=</mo><mn>3</mn></mrow></math>, this allows single-bit error correction. The difference is caused by some points that are equidistant to two valid patterns.</p>
+</div>
+</section>
+<section id="S9.SS6.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.6.2 </span>Hamming Code</h4>
+
+<div id="S9.SS6.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In this course, we only consider SEC / DED codes (Single Error Correction / Double Error Detection), where Hamming Code is the most common example. The Hamming Code is constructed as follows:
+</p>
+<ol id="S9.I4" class="ltx_enumerate">
+<li id="S9.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S9.I4.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Determine the number of parity bits required by the formula <math id="S9.I4.i1.p1.m1" class="ltx_Math" alttext="2^{p}\geq m+p+1" display="inline"><mrow><msup><mn>2</mn><mi>p</mi></msup><mo>≥</mo><mrow><mi>m</mi><mo>+</mo><mi>p</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>, where <math id="S9.I4.i1.p1.m2" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math> is the number of data bits and <math id="S9.I4.i1.p1.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is the number of parity bits.</p>
+</div>
+</li>
+<li id="S9.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S9.I4.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The positions of the parity bits are determined by the power of 2 (1, 2, 4, 8, etc.), and each parity bit is named by its position (<math id="S9.I4.i2.p1.m1" class="ltx_Math" alttext="p_{1},p_{2},p_{4},p_{8},\ldots" display="inline"><mrow><msub><mi>p</mi><mn>1</mn></msub><mo>,</mo><msub><mi>p</mi><mn>2</mn></msub><mo>,</mo><msub><mi>p</mi><mn>4</mn></msub><mo>,</mo><msub><mi>p</mi><mn>8</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi></mrow></math>).</p>
+</div>
+</li>
+<li id="S9.I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S9.I4.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Let the parity bit <math id="S9.I4.i3.p1.m1" class="ltx_Math" alttext="p_{2^{i}}" display="inline"><msub><mi>p</mi><msup><mn>2</mn><mi>i</mi></msup></msub></math> checks the parity of the bits where the <math id="S9.I4.i3.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th bit is 1 (including itself). The overall parity should be even.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S9.SS6.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To detect and correct errors, we can use the following steps:</p>
+<ol id="S9.I5" class="ltx_enumerate">
+<li id="S9.I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S9.I5.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Calculate the parity bits using the data bits.</p>
+</div>
+</li>
+<li id="S9.I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S9.I5.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Compare the calculated parity bits with the received parity bits.</p>
+</div>
+</li>
+<li id="S9.I5.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S9.I5.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the parity bits are different, there is an error. The position of the error is determined by the sum of subscript of the parity bits that are different. For example, if <math id="S9.I5.i3.p1.m1" class="ltx_Math" alttext="p_{1}" display="inline"><msub><mi>p</mi><mn>1</mn></msub></math> and <math id="S9.I5.i3.p1.m2" class="ltx_Math" alttext="p_{4}" display="inline"><msub><mi>p</mi><mn>4</mn></msub></math> are different, the error is at the 5-th bit.</p>
+</div>
+</li>
+</ol>
+</div>
+<section id="S9.SS6.SSS2.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Double Error Detection</h5>
+
+<div id="S9.SS6.SSS2.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">To detect double errors, we can add an extra parity bit <math id="S9.SS6.SSS2.Px1.p1.m1" class="ltx_Math" alttext="p_{n}" display="inline"><msub><mi>p</mi><mi>n</mi></msub></math> that checks the parity of all bits. If there is only one error, <math id="S9.SS6.SSS2.Px1.p1.m2" class="ltx_Math" alttext="p_{n}" display="inline"><msub><mi>p</mi><mi>n</mi></msub></math> will be incorrect. If there are two errors, <math id="S9.SS6.SSS2.Px1.p1.m3" class="ltx_Math" alttext="p_{n}" display="inline"><msub><mi>p</mi><mi>n</mi></msub></math> will still be correct, but some other parity bits will be incorrect.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S9.SS7" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.7 </span>Virtual Memory</h3>
+
+<section id="S9.SS7.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.7.1 </span>Page Table</h4>
+
+<div id="S9.SS7.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Sometimes we increase the address space by using virtual memory, with some parts stored in the disk. Hence, before accessing the memory, we need to translate the virtual address to the physical address. The translation is done with the help of the page table.</p>
+</div>
+<div id="S9.SS7.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The page table contains all mappings from virtual pages to physical pages. Hence, there is no index bit in the page table, because the virtual page number is the index. The page table consists of the valid bit and the physical page number.</p>
+</div>
+</section>
+<section id="S9.SS7.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">9.7.2 </span>Translation Look-aside Buffer (TLB)</h4>
+
+<div id="S9.SS7.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Since page table needs to hold all mappings, it is large and can only be stored in the main memory. However, main memory access is slow. To speed up the translation, we use TLB, which is a small cache for the page table.</p>
+</div>
+<div id="S9.SS7.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Since the TLB is essentially a cache, the structure is the same as the previous section mentioned, and we will not repeat it here.</p>
+</div>
+</section>
+</section>
+<section id="S9.SS8" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.8 </span>Overall Memory Hierarchy</h3>
+
+<div id="S9.SS8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When fetching data, we go through the following steps:</p>
+<ol id="S9.I6" class="ltx_enumerate">
+<li id="S9.I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S9.I6.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Translate the virtual address to the physical address.</p>
+<ol id="S9.I6.i1.I1" class="ltx_enumerate">
+<li id="S9.I6.i1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">(a)</span> 
+<div id="S9.I6.i1.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Check TLB. If the translation is in the TLB, use the physical page number directly. Else, go to the next step.</p>
+</div>
+</li>
+<li id="S9.I6.i1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">(b)</span> 
+<div id="S9.I6.i1.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Access the page table in the main memory. If the physical page number is located on disk, raise a page fault. Else, use the physical page number.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li id="S9.I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S9.I6.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Access the cache. If the data is in the cache, use the data directly. Else, go to the next step.</p>
+</div>
+</li>
+<li id="S9.I6.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S9.I6.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Access the main memory.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S9.SS8.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">Easy to Mistake:</span>
+</p>
+</div>
+<div id="S9.SS8.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are two scenarios that will never happen:</p>
+<ol id="S9.I7" class="ltx_enumerate">
+<li id="S9.I7.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S9.I7.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We miss both the TLB and page table but hit the cache (or memory): Unless a page fault occurs, the data must be in the cache or memory.</p>
+</div>
+</li>
+<li id="S9.I7.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S9.I7.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We hit TLB but miss the page table: Since the TLB is a cache for the page table, and page table is the only source for the physical page number.
+</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Note:</span> TLB miss here means the page we required is not in memory, not we cannot find the virtual page number in TLB (which is impossible).</p>
+</div>
+</section>
+</section>
+<section id="S10" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">10 </span>Parallel Processor</h2>
+
+<div id="S10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The goal of parallel processor is to replace large inefficient processors with multiple smaller processors, which improves scalability, availability and power efficiency.</p>
+</div>
+<div id="S10.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Parallelism can be achieved in multiple ways:</p>
+<ul id="S10.I1" class="ltx_itemize">
+<li id="S10.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Task-level parallelism: execute independent jobs in parallel.</p>
+</div>
+</li>
+<li id="S10.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Parallel processing program: One program that utilize multiple processors.</p>
+</div>
+</li>
+<li id="S10.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Multicore processor: Multiple processors on a single chip.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S10.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, the challenge of parallelism comes from both hardware and software. The hardware challenge is that serial hardware is much simpler than parallel hardware. The software challenge is sequential program is much easier to write and debug than concurrent program.</p>
+</div>
+<section id="S10.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.1 </span>Amdahl’s Law</h3>
+
+<div id="S10.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Amdahl’s Law is used to evaluate the speedup of a program when parallelized. The speedup is calculated as follows:</p>
+<table id="S10.Ex23" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S10.Ex23.m1" class="ltx_Math" alttext="\text{Speedup}=\frac{1}{(1-f)+\frac{f}{n}}" display="block"><mrow><mtext>Speedup</mtext><mo>=</mo><mfrac><mn>1</mn><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>-</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mfrac><mi>f</mi><mi>n</mi></mfrac></mrow></mfrac></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="S10.SS1.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is the fraction of the program that can be parallelized and <math id="S10.SS1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> is the number of processors.</p>
+</div>
+<div id="S10.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The maximum speedup is given by:
+</p>
+<table id="S10.Ex24" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S10.Ex24.m1" class="ltx_Math" alttext="\lim_{n\to\infty}\text{Speedup}=\frac{1}{1-f}" display="block"><mrow><mrow><munder><mo movablelimits="false">lim</mo><mrow><mi>n</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></munder><mo>⁡</mo><mtext>Speedup</mtext></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>-</mo><mi>f</mi></mrow></mfrac></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S10.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Amdahl’s law tells us we can never achieve reverse proportional speedup by adding more processors, due to the presence of the serial part of the program, as the maximum speedup is <math id="S10.SS1.p3.m1" class="ltx_Math" alttext="\frac{1}{1-f}" display="inline"><mfrac><mn>1</mn><mrow><mn>1</mn><mo>-</mo><mi>f</mi></mrow></mfrac></math>.</p>
+</div>
+<div id="S10.SS1.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">
+<span class="ltx_text ltx_font_bold ltx_framed_rectangle">More Info:</span>
+</p>
+</div>
+<div id="S10.SS1.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">How Amdahl’s Law is derived:</p>
+<table id="S10.EGx7" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S10.Ex25"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">Speedup</span></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S10.Ex25.m2" class="ltx_Math" alttext="\displaystyle=\frac{T_{\text{old}}}{T_{\text{new}}}" display="inline"><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><msub><mi>T</mi><mtext>old</mtext></msub><msub><mi>T</mi><mtext>new</mtext></msub></mfrac></mstyle></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S10.Ex26"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S10.Ex26.m1" class="ltx_Math" alttext="\displaystyle=\frac{T_{\text{old}}}{(1-f)\times T_{\text{old}}+\frac{f\times T%
+_{\text{old}}}{n}}" display="inline"><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><msub><mi>T</mi><mtext>old</mtext></msub><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>-</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>×</mo><msub><mi>T</mi><mtext>old</mtext></msub></mrow><mo>+</mo><mfrac><mrow><mi>f</mi><mo>×</mo><msub><mi>T</mi><mtext>old</mtext></msub></mrow><mi>n</mi></mfrac></mrow></mfrac></mstyle></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+<tbody id="S10.Ex27"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S10.Ex27.m1" class="ltx_Math" alttext="\displaystyle=\frac{1}{(1-f)+\frac{f}{n}}" display="inline"><mrow><mi></mi><mo>=</mo><mstyle displaystyle="true"><mfrac><mn>1</mn><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>1</mn><mo>-</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mfrac><mi>f</mi><mi>n</mi></mfrac></mrow></mfrac></mstyle></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr></tbody>
+</table>
+</div>
+<section id="S10.SS1.SSS0.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Strong and Weak Scalability</h5>
+
+<div id="S10.SS1.SSS0.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Strong scalability is that if the problem size is fixed, the time should be reversed proportional to the number of processors. Weak scalability is that if the number of processors is proportional to the problem size, the time should be constant. Weak scalability is more common in practice and strong scalability is more difficult to achieve, due to Amdahl’s Law.</p>
+</div>
+</section>
+</section>
+<section id="S10.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.2 </span>Single Instruction Multiple Data (SIMD)</h3>
+
+<div id="S10.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In SIMD, processor operates on a vector of data with a single instruction. Or, all processors execute the same instruction, but each with different data address. This is a simple way to achieve synchronization.</p>
+</div>
+</section>
+<section id="S10.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.3 </span>Multithreading</h3>
+
+<div id="S10.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In multithreading, processor can switch between different threads to achieve parallelism. When one thread is stalled, the processor can switch to another thread. There are two types of multithreading: fine-grained multithreading (switch between threads in every cycle) and coarse-grained multithreading(switch only on long stalls, such as cache miss).</p>
+</div>
+<section id="S10.SS3.SSS0.Px1" class="ltx_paragraph">
+<h5 class="ltx_title ltx_title_paragraph">Simultaneous Multithreading (SMT)</h5>
+
+<div id="S10.SS3.SSS0.Px1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In SMT, the processor can execute multiple threads simultaneously. This is achieved by multiple-issue processor. SMT utilize resources more efficiently than the two types of multithreading mentioned above. In traditional multithreading, only one thread can use the resources at a time. This usually cannot fully utilize all issue slots in the processor. In SMT, the vacant resources can be used by another thread.</p>
+</div>
+</section>
+</section>
+<section id="S10.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.4 </span>Shared Memory Multiprocessor</h3>
+
+<div id="S10.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In shared memory multiprocessor, all processors share the same memory. Hence, if one program is written into the memory, all processors can read it.</p>
+</div>
+</section>
+<section id="S10.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.5 </span>Message Parsing Multiprocessor</h3>
+
+<div id="S10.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In message parsing multiprocessor, each processor has its own memory. The processors communicate with each other by sending messages. This is more scalable than shared memory multiprocessor, but the communication is more complex.</p>
+</div>
+</section>
+</section>
+</article>
+</div>
+</div>
+</body>
+</html>

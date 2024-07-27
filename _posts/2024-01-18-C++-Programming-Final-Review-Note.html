@@ -1,0 +1,2034 @@
+---
+title: "C/C++ Programming Final Review Note"
+tags:
+- C++
+- Review Note
+excerpt: "Final review note for CS205 C/C++ Programming"
+---
+
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1 Data Types</title>
+<!--Generated on Sat Jul 27 19:22:07 2024 by LaTeXML (version 0.8.6) http://dlmf.nist.gov/LaTeXML/.-->
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ltx-article.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document">
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Data Types</h2>
+
+<div id="S1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, we have two build-in data types: fundamental data types and compound data types.
+Fundamental data types include: <span class="ltx_text ltx_font_bold">int, float, double, char, bool, void</span>.
+Compound data types include: <span class="ltx_text ltx_font_bold">array, pointer, reference, string, structure, union, enumeration, class, function, etc.</span>
+To be noticed that <span class="ltx_text ltx_font_bold">void</span> is a special data type.</p>
+</div>
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.1 </span>Naming Limit</h3>
+
+<div id="S1.SS1.p1" class="ltx_para ltx_noindent">
+<ul id="S1.I1" class="ltx_itemize">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A variable name can be of any length.</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A variable name must begin with a letter or an underscore character.</p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A variable name can only contain letters, numbers, and the underscore character.</p>
+</div>
+</li>
+<li id="S1.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Variable names are case-sensitive.</p>
+</div>
+</li>
+<li id="S1.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A name that begins with two underscores or an underscore followed by an uppercase letter is reserved for the compiler.</p>
+</div>
+</li>
+<li id="S1.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Reserved words (such as C++ keywords, like int) may not be used as variable names.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S1.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.2 </span>Sizeof Operator</h3>
+
+<div id="S1.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_typewriter">sizeof</span> operator returns the size of a variable or data type.
+We can use the type name or variable name to get the size of a type or variable.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a;
+sizeof(int); // returns 4
+sizeof(a); // returns 4
+</pre>
+</div>
+</section>
+<section id="S1.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.3 </span>Data Initialization</h3>
+
+<div id="S1.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are several ways to initialize a variable in C++.</p>
+</div>
+<div id="S1.SS3.p2" class="ltx_para ltx_noindent">
+<ul id="S1.I2" class="ltx_itemize">
+<li id="S1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">int a = 0;</span></p>
+</div>
+</li>
+<li id="S1.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">int a(0);</span></p>
+</div>
+</li>
+<li id="S1.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">int a{0};</span></p>
+</div>
+</li>
+<li id="S1.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">int a = {};</span></p>
+</div>
+</li>
+<li id="S1.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S1.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">int a = {0};</span></p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S1.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed that if we initialize a variable without a value in main function, it will be initialized to a random value.
+But if we initialize a static variable without a value, it will be initialized to 0 (or default value).</p>
+</div>
+</section>
+<section id="S1.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.4 </span>Integer Types</h3>
+
+<figure id="S1.T1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">Type</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Size</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Range</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">char</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">1 byte</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">
+<math id="S1.T1.m1" class="ltx_Math" alttext="-2^{7}" display="inline"><mrow><mo>-</mo><msup><mn>2</mn><mn>7</mn></msup></mrow></math> to <math id="S1.T1.m2" class="ltx_Math" alttext="2^{7}-1" display="inline"><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>-</mo><mn>1</mn></mrow></math> or 0 to <math id="S1.T1.m3" class="ltx_Math" alttext="2^{8}-1" display="inline"><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>-</mo><mn>1</mn></mrow></math>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">short</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">
+<math id="S1.T1.m4" class="ltx_Math" alttext="-2^{15}" display="inline"><mrow><mo>-</mo><msup><mn>2</mn><mn>15</mn></msup></mrow></math> to <math id="S1.T1.m5" class="ltx_Math" alttext="2^{15}-1" display="inline"><mrow><msup><mn>2</mn><mn>15</mn></msup><mo>-</mo><mn>1</mn></mrow></math> or 0 to <math id="S1.T1.m6" class="ltx_Math" alttext="2^{16}-1" display="inline"><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>-</mo><mn>1</mn></mrow></math>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">int</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">
+<math id="S1.T1.m7" class="ltx_Math" alttext="-2^{31}" display="inline"><mrow><mo>-</mo><msup><mn>2</mn><mn>31</mn></msup></mrow></math> to <math id="S1.T1.m8" class="ltx_Math" alttext="2^{31}-1" display="inline"><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>-</mo><mn>1</mn></mrow></math> or 0 to <math id="S1.T1.m9" class="ltx_Math" alttext="2^{32}-1" display="inline"><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>-</mo><mn>1</mn></mrow></math>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">
+<math id="S1.T1.m10" class="ltx_Math" alttext="-2^{31}" display="inline"><mrow><mo>-</mo><msup><mn>2</mn><mn>31</mn></msup></mrow></math> to <math id="S1.T1.m11" class="ltx_Math" alttext="2^{31}-1" display="inline"><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>-</mo><mn>1</mn></mrow></math> or 0 to <math id="S1.T1.m12" class="ltx_Math" alttext="2^{32}-1" display="inline"><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>-</mo><mn>1</mn></mrow></math>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long long</span></td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">8 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">
+<math id="S1.T1.m13" class="ltx_Math" alttext="-2^{63}" display="inline"><mrow><mo>-</mo><msup><mn>2</mn><mn>63</mn></msup></mrow></math> to <math id="S1.T1.m14" class="ltx_Math" alttext="2^{63}-1" display="inline"><mrow><msup><mn>2</mn><mn>63</mn></msup><mo>-</mo><mn>1</mn></mrow></math> or 0 to <math id="S1.T1.m15" class="ltx_Math" alttext="2^{64}-1" display="inline"><mrow><msup><mn>2</mn><mn>64</mn></msup><mo>-</mo><mn>1</mn></mrow></math>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 1: </span>Integer Types</figcaption>
+</figure>
+<div id="S1.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, data width largely depends on the compiler and the computer architecture.
+The true standard is that: <span class="ltx_text ltx_font_bold">int</span> is at least 16 bits, <span class="ltx_text ltx_font_bold">long</span> is at least 32 bits, and <span class="ltx_text ltx_font_bold">long long</span> is at least 64 bits.</p>
+</div>
+<div id="S1.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The compiler will provide the <span class="ltx_text ltx_font_bold">limits.h</span> header file, which defines macros that allow you to use these values and other details about the binary representation of integer values in your programs.
+For example <span class="ltx_text ltx_font_bold">INT_MIN</span> and <span class="ltx_text ltx_font_bold">INT_MAX</span>.</p>
+</div>
+<section id="S1.SS4.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.4.1 </span>Prefix for Different Bases</h4>
+
+<div id="S1.SS4.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We might want to use different bases to represent an integer.
+This can be specified by adding a prefix to the integer literal.
+If we want to use octal, we can add a <span class="ltx_text ltx_font_bold">0</span> prefix (numbers like 09 will trigger an error).
+If we want to use hexadecimal, we can add a <span class="ltx_text ltx_font_bold">0x</span> or <span class="ltx_text ltx_font_bold">0X</span> prefix.
+If we want to use binary, we can add a <span class="ltx_text ltx_font_bold">0b</span> or <span class="ltx_text ltx_font_bold">0B</span> prefix.</p>
+</div>
+</section>
+<section id="S1.SS4.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">1.4.2 </span>Suffix for Different Types</h4>
+
+<div id="S1.SS4.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can also use suffix to specify the type of an integer literal.
+If we want to use <span class="ltx_text ltx_font_bold">unsigned</span>, we can add a <span class="ltx_text ltx_font_bold">u</span> or <span class="ltx_text ltx_font_bold">U</span> suffix.
+If we want to use <span class="ltx_text ltx_font_bold">long</span>, we can add a <span class="ltx_text ltx_font_bold">l</span> or <span class="ltx_text ltx_font_bold">L</span> suffix.
+If we want to use <span class="ltx_text ltx_font_bold">long long</span>, we can add a <span class="ltx_text ltx_font_bold">ll</span> or <span class="ltx_text ltx_font_bold">LL</span> suffix.</p>
+</div>
+</section>
+</section>
+<section id="S1.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.5 </span>Boolean Type</h3>
+
+<div id="S1.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_bold">bool</span> type is used to represent boolean values.
+Any non-zero value is considered true, even negative numbers.</p>
+</div>
+</section>
+<section id="S1.SS6" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.6 </span>Floating-Point Types</h3>
+
+<figure id="S1.T2" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">Type</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Size</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Range</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">float</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">about 6 digits</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">double</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">8 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">about 15 digits</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long double</span></td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">8 bytes</td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">about 15 digits</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 2: </span>Floating-Point Types</figcaption>
+</figure>
+<div id="S1.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The compiler will provide the <span class="ltx_text ltx_font_bold">float.h</span> header file, which defines macros that allow you to use these values and other details about the binary representation of floating-point values in your programs.</p>
+</div>
+<div id="S1.SS6.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can use <span class="ltx_text ltx_font_bold">E notation</span> to represent a floating-point number.
+For example, <span class="ltx_text ltx_font_bold">1.23e-6</span> represents <math id="S1.SS6.p2.m1" class="ltx_Math" alttext="1.23\times 10^{-6}" display="inline"><mrow><mn>1.23</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>-</mo><mn>6</mn></mrow></msup></mrow></math>.</p>
+</div>
+<div id="S1.SS6.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed, <span class="ltx_text ltx_font_typewriter">double a = .2</span> is a valid statement, and it will initialize <span class="ltx_text ltx_font_typewriter">a</span> to 0.2.</p>
+</div>
+</section>
+<section id="S1.SS7" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.7 </span>Const Qualifier</h3>
+
+<div id="S1.SS7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_bold">const</span> qualifier can be used to make a variable immutable.
+You can only use <span class="ltx_text ltx_font_bold">const</span> qualifier when you declare a variable.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+const int a = 0; // correct
+
+const int b;     // will trigger an error
+b = 0;
+</pre>
+</div>
+</section>
+<section id="S1.SS8" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.8 </span>Arithmetic Operators</h3>
+
+<div id="S1.SS8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, the arithmetic operators have left-to-right associativity, which means <span class="ltx_text ltx_font_typewriter">12 / 3 * 4</span> is equivalent to <span class="ltx_text ltx_font_typewriter">(12 / 3) * 4</span>, instead of <span class="ltx_text ltx_font_typewriter">12 / (3 * 4)</span>.</p>
+</div>
+<div id="S1.SS8.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">When division is performed, if there exists one operand that is floating-point type, the result will be a floating-point type.</p>
+</div>
+</section>
+<section id="S1.SS9" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">1.9 </span>Type Conversion</h3>
+
+<div id="S1.SS9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The compiler will perform type conversion by the following rules:</p>
+<ol id="S1.I3" class="ltx_enumerate">
+<li id="S1.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If either operand is a floating type, the two operands will be converted to the higher precision type.</p>
+</div>
+</li>
+<li id="S1.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Otherwise, if both are signed or both are unsigned, the operand with the smaller type will be converted to the larger type.</p>
+</div>
+</li>
+<li id="S1.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S1.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Otherwise, if the unsigned type is larger than the signed type, the signed type will be converted to the unsigned type (if it is a negative number, this will cause an overflow).</p>
+</div>
+</li>
+<li id="S1.I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S1.I3.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Otherwise, if the signed type can represent all values of the unsigned type, the unsigned type will be converted to the signed type.</p>
+</div>
+</li>
+<li id="S1.I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S1.I3.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Otherwise, the signed type will be converted to the unsigned type.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S1.SS9.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can force a type cast by using the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a = 0;
+double b = (double) a;
+double c = double (a);
+auto d = double (a);
+</pre>
+</div>
+<div id="S1.SS9.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed, when using an expression to initialize a variable, the order is to first go through the expression and then perform type conversion.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a = 3.5 + 1.5; // a = 5
+double b = 3 / 2;   // b = 1.0
+</pre>
+</div>
+</section>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Compound Data Types</h2>
+
+<section id="S2.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.1 </span>Array</h3>
+
+<section id="S2.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.1.1 </span>Array Size</h4>
+
+<div id="S2.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The size of an array must be a constant expression (could be 0).
+If you use <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on the array name, it will return the size of the array in bytes.
+For example, an <span class="ltx_text ltx_font_typewriter">int</span> array with 10 elements will return 40.</p>
+</div>
+</section>
+<section id="S2.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">2.1.2 </span>Array Initialization</h4>
+
+<div id="S2.SS1.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We use curly braces to initialize an array.
+This will initialize the array from the first element to the last element.
+If some elements are not given a value, they will be initialized to 0.
+However, this is only valid when declaration, not assignment.
+For example:
+</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a[10] = {1, 2, 3}; // a = {1, 2, 3, 0, 0, 0, 0, 0, 0, 0}
+int b[3];
+b = {1, 2, 3};         // will trigger an error
+</pre>
+</div>
+<div id="S2.SS1.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can drop the <span class="ltx_text ltx_font_bold">=</span> or omit the array size, if you initialize the array this way.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a[] = {1, 2, 3};  // a = {1, 2, 3}
+int b[3]  {1, 2, 3};  // b = {1, 2, 3}
+int c[]   {1, 2, 3};  // c = {1, 2, 3}
+</pre>
+</div>
+<div id="S2.SS1.SSS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">You cannot use an array to initialize another array.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a[10] = {1, 2, 3};
+int b[10] = a; // will trigger an error
+int c[10];
+c = a;         // will trigger an error
+</pre>
+</div>
+<div id="S2.SS1.SSS2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">You cannot use auto-conversion, if you initialize an array this way.
+For example:
+</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+char a[1] = {353}; // will trigger an error
+char b = 353;      // correct, b = ’a’
+char c = {353};    // will trigger an error
+char d(353);       // correct, d = ’a’
+</pre>
+</div>
+</section>
+</section>
+<section id="S2.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.2 </span>String</h3>
+
+<div id="S2.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A C-style string is a char array that is terminated by a null character (<span class="ltx_text ltx_font_typewriter">’\0’</span>, whose ascii code is 0).
+You can use a string to initialize a char array, and the compiler will automatically add a null character at the end (the null character takes up one element and will be counted by <span class="ltx_text ltx_font_typewriter">sizeof</span> operator).
+When array is not big enough to hold the string, the compiler will trigger an error.</p>
+</div>
+<div id="S2.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">You cannot initialize a single char with a string, even if the string only contains one character or no character.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+char a = "a"; // will trigger an error
+char b = "";  // will trigger an error
+char c = ’a’; // correct
+</pre>
+</div>
+<div id="S2.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">C++ provides a <span class="ltx_text ltx_font_bold">string</span> class to handle strings.
+Its value can be accessed like an array, and can use <span class="ltx_text ltx_font_typewriter">+</span> or <span class="ltx_text ltx_font_typewriter">+=</span> operator to concatenate strings.
+If you want to find the length of a string, you can use <span class="ltx_text ltx_font_typewriter">.size()</span> method (this excludes the null character).</p>
+</div>
+</section>
+<section id="S2.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.3 </span>Structure</h3>
+
+<div id="S2.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A structure is a compound data type that groups related data together.
+You can use curly braces to initialize a structure (partial initialization is allowed).
+You can even use nested curly braces to initialize an array of structures.
+For example:</p>
+{% raw %}
+<pre class="ltx_verbatim ltx_font_typewriter">
+struct Node {
+    int data;
+    int name;
+};
+Node nodes[2] = {{1, 2}, {3, 4}};
+</pre>
+{% endraw %}
+</div>
+<div id="S2.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A structure can have member functions.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+struct Node {
+    int data;
+    int name;
+    void print() {
+        cout &lt;&lt; data &lt;&lt; " " &lt;&lt; name &lt;&lt; endl;
+    }
+};
+</pre>
+</div>
+</section>
+<section id="S2.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.4 </span>Union</h3>
+
+<div id="S2.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A union is a compound data type that allows you to store different data types in the same memory location.
+But only one member can contain a value at any given time.</p>
+</div>
+</section>
+<section id="S2.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">2.5 </span>Enumeration</h3>
+
+<div id="S2.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_typewriter">enum</span> type in C++ is used to define a set of named constants.
+If not specified, the first constant will be assigned a value of 0, and the value of each successive constant will be increased by 1.
+If any constant is assigned a value, the value of each successive constant will be increased by 1 from the previous constant.
+To be noticed, these constants can have the same value.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+enum Color {
+    RED = 1,
+    GREEN,
+    BLUE = 5,
+    YELLOW = 5
+};
+</pre>
+</div>
+<div id="S2.SS5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">This will lead to the following values: <span class="ltx_text ltx_font_typewriter">RED = 1, GREEN = 2, BLUE = 5, YELLOW = 5</span>.</p>
+</div>
+<div id="S2.SS5.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Due to this potential discontinuity, you cannot perform arithmetic operations on <span class="ltx_text ltx_font_typewriter">enum</span> type.
+But you can cast it to an integer type, and then perform arithmetic operations.</p>
+</div>
+<div id="S2.SS5.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Enum type variable are actually stored as integers.
+When you compare two <span class="ltx_text ltx_font_typewriter">enum</span> type variables, you are actually comparing their values.
+And you can initialize an <span class="ltx_text ltx_font_typewriter">enum</span> type variable with an integer value, even if there is no corresponding constant.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+enum Color {
+    ... // same as above
+};
+Color a = 1;          // wrong
+Color b = (Color) 1;  // correct
+Color c = Color(1);   // correct
+Color d = Color(200); // correct even if there is no corresponding constant
+</pre>
+</div>
+</section>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Pointer</h2>
+
+<div id="S3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">To get the address of a variable, we can use the <span class="ltx_text ltx_font_typewriter">&amp;</span> operator.
+Conversely, to get the value of a variable from its address, we can use the <span class="ltx_text ltx_font_typewriter">*</span> operator.</p>
+</div>
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.1 </span>Declaration and Initialization</h3>
+
+<div id="S3.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">For example, to declare a pointer-to-int variable <span class="ltx_text ltx_font_typewriter">p</span> and initialize it to point to variable <span class="ltx_text ltx_font_typewriter">a</span>, we can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a = 0;
+int * p = &amp;a;
+</pre>
+</div>
+<div id="S3.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Two spaces are optional in the above syntax:
+The space between <span class="ltx_text ltx_font_typewriter">int</span> and <span class="ltx_text ltx_font_typewriter">*</span> and the space between <span class="ltx_text ltx_font_typewriter">*</span> and <span class="ltx_text ltx_font_typewriter">p</span>.</p>
+</div>
+<div id="S3.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The content of a pointer variable is the address of another variable.
+To assign a value to a pointer variable is dangerous, because it means you let it points to a memory location that you do not know what it is.
+For example, the following code is correct, but it is dangerous:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int *p = (int *) 0xB8000000;
+</pre>
+</div>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.2 </span>Initialization with <span class="ltx_text ltx_font_typewriter">new</span>
+</h3>
+
+<div id="S3.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can use <span class="ltx_text ltx_font_typewriter">new</span> operator to dynamically allocate memory, and use <span class="ltx_text ltx_font_typewriter">delete</span> operator to free the memory.</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int *p = new int;
+int *q = new int[10];
+delete p;
+delete[] q;
+</pre>
+</div>
+<div id="S3.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">There are several things to be noticed:
+</p>
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You cannot delete a memory location that is not allocated by <span class="ltx_text ltx_font_typewriter">new</span>.</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You cannot delete a memory location that is already deleted.</p>
+</div>
+</li>
+<li id="S3.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">It is safe to delete a <span class="ltx_text ltx_font_typewriter">nullptr</span>.</p>
+</div>
+</li>
+<li id="S3.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you try to delete a dynamically allocated array, make sure the pointer points to the first element of the array.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S3.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.3 </span>Dynamic Array</h3>
+
+<div id="S3.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can use <span class="ltx_text ltx_font_typewriter">new</span> operator to dynamically allocate an array.</p>
+</div>
+<div id="S3.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To iterate through a dynamic array, we simply increment the pointer.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int *p = new int[10];
+for (int i = 0; i &lt; 10; i++) {
+    cout &lt;&lt; p[i] &lt;&lt; endl; // correct
+}
+for (int i = 0; i &lt; 10; i++) {
+    cout &lt;&lt; *p &lt;&lt; endl;   // also correct
+    p++;
+}
+p -= 10; // reset p
+delete [] p;
+</pre>
+</div>
+<div id="S3.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Also, this works on normal arrays.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *p = a;                                   // or int *p = &amp;a[0];
+for (int i = 0; i &lt; 10; i++) {
+    cout &lt;&lt; *p &lt;&lt; endl; // correct
+    p++;
+}
+</pre>
+</div>
+<div id="S3.SS3.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Especially, a dynamic array is useful for multiple strings.
+You can declare a dynamic array of <span class="ltx_text ltx_font_typewriter">char *</span> to store multiple strings.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+const char * names[] = {"Alice", "Bob", "Cindy"};
+</pre>
+</div>
+<div id="S3.SS3.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">The array initialized in this way will not be forced to be aligned at the end.</p>
+</div>
+</section>
+<section id="S3.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.4 </span>Dynamic Structure</h3>
+
+<div id="S3.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">We can use <span class="ltx_text ltx_font_typewriter">new</span> operator to dynamically allocate a structure.
+If we want to access the members of the structure, we can use the <span class="ltx_text ltx_font_typewriter">-&gt;</span> operator.
+</p>
+</div>
+</section>
+<section id="S3.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.5 </span>Pointer and Const</h3>
+
+<section id="S3.SS5.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">3.5.1 </span>Const Pointer</h4>
+
+<div id="S3.SS5.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A const pointer is a pointer whose value (the address it holds) cannot be changed after initialization.
+But you can change the value of the variable it points to.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a = 0;
+int b = 1;
+int * const p = &amp;a;
+p* = 1; // correct
+p = &amp;b; // will trigger an error
+</pre>
+</div>
+</section>
+<section id="S3.SS5.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">3.5.2 </span>Pointer to Const</h4>
+
+<div id="S3.SS5.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A pointer to const is a pointer that points to a const variable.
+You cannot change the value of the variable it points to, but you can change the address it holds.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int a = 0;
+int b = 1;
+const int * p = &amp;a; // or int const * p = &amp;a;
+p* = 1; // will trigger an error
+p = &amp;b; // correct
+</pre>
+</div>
+<div id="S3.SS5.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed, a pointer that points to a const variable must be a pointer to const.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+const int a = 0;
+int * p1 = &amp;a; // will trigger an error
+const int * p2 = &amp;a; // correct
+</pre>
+</div>
+<div id="S3.SS5.SSS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">This is part of const-correctness, which means that even if the pointer may not try to change the value of the variable it points to, it should still be a pointer to const.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Storage</h2>
+
+<section id="S4.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.1 </span>Automatic Storage</h3>
+
+<div id="S4.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Ordinary variables are stored in stack.
+They will be destroyed when the function terminates.</p>
+</div>
+</section>
+<section id="S4.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.2 </span>Static Storage</h3>
+
+<div id="S4.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can create a static variable by using the <span class="ltx_text ltx_font_typewriter">static</span> keyword or defining it outside any function.
+They will exist throughout the lifetime of the program.</p>
+</div>
+</section>
+<section id="S4.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.3 </span>Dynamic Storage</h3>
+
+<div id="S4.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The variables created by <span class="ltx_text ltx_font_typewriter">new</span> operator are stored in heap.
+They are not tied to any function, and will exist until you delete them.</p>
+</div>
+</section>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Increment and Decrement</h2>
+
+<div id="S5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The increment and decrement operators have two forms: prefix and postfix.
+The prefix form will first increment or decrement the variable, and then return the value.
+The postfix form will first return the value, and then increment or decrement the variable.</p>
+</div>
+<div id="S5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The mechanism behind the increment and decrement operators can be better explained by how overloaded operators work:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class Integer {
+    private:
+        int value;
+    public:
+        // Prefix increment operator (++Integer)
+        Integer&amp; operator++() {
+            ++value;
+            return *this;
+        }
+
+        // Postfix increment operator (Integer++)
+        Integer operator++(int) {
+            Integer temp(*this);
+            ++(*this);
+            return temp; // return the old value
+        }
+}
+</pre>
+</div>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Function</h2>
+
+<section id="S6.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.1 </span>Function Prototype</h3>
+
+<div id="S6.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A function prototype is a declaration of a function that specifies the function’s name and type signature (arity, data types of parameters, and return type), but omits the function body.
+It is necessary to declare a function prototype before you use it, but you don’t have to define it.</p>
+</div>
+<div id="S6.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">When declaring a function prototype, you can omit the parameter names.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int add(int, int);
+</pre>
+</div>
+</section>
+<section id="S6.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.2 </span>Passing Array to Function</h3>
+
+<div id="S6.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When passing an array to a function, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void print(int a[]) {
+    ...
+}
+void print(int *a) {
+    ...
+}
+</pre>
+</div>
+<div id="S6.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed that <span class="ltx_text ltx_font_typewriter">a[]</span> here works the same as <span class="ltx_text ltx_font_typewriter">*a</span>, which means you can perform pointer arithmetic on it.
+However, this is not possible for a normal array variable.
+For the very same reason, if you apply <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on <span class="ltx_text ltx_font_typewriter">a[]</span> in the function, it will return the size of a pointer, not the size of the array.</p>
+</div>
+<section id="S6.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">6.2.1 </span>Two Dimensional Array</h4>
+
+<div id="S6.SS2.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When passing a two dimensional array to a function, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void print(int a[][10]) {
+    ...
+}
+void print(int (*a)[10]) {
+    ...
+}
+</pre>
+</div>
+<div id="S6.SS2.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The second size of the array must be specified.</p>
+</div>
+<div id="S6.SS2.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you apply <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on <span class="ltx_text ltx_font_typewriter">a</span> in the function, it will return the size of a pointer, not the size of the array.
+But if you apply <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on <span class="ltx_text ltx_font_typewriter">a[0]</span> in the function, it will return the size of the first row of the array.</p>
+</div>
+</section>
+</section>
+<section id="S6.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.3 </span>Pointer to Function</h3>
+
+<div id="S6.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A pointer to function is a pointer that points to a function.
+To declare a pointer to function, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+int add (int, int);
+int (*p) (int, int) = add;
+
+p(1, 2);
+(*p)(1, 2); // both are correct
+</pre>
+</div>
+<div id="S6.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Notice that the parameter type and number and the return type of the function must match the type of the pointer to function.
+And this is where the void type is useful (when the return type of the function is void).</p>
+</div>
+</section>
+<section id="S6.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.4 </span>Inline Function</h3>
+
+<div id="S6.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">An inline function is a function that is expanded in line when it is called.
+When the inline function is called, the compiler will replace the function call with the function code.</p>
+</div>
+<div id="S6.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">This will reduce the overhead of a function call, because the program does not have to jump to another location to execute the function code.
+But it will increase the memory usage, because the function code will be copied to every place where the function is called.
+</p>
+</div>
+</section>
+<section id="S6.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.5 </span>Passing by Reference</h3>
+
+<div id="S6.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When passing a variable to a function, the default behavior is to pass by value.
+This means that the function will create a copy of the variable, and any changes to the variable inside the function will not affect the original variable.</p>
+</div>
+<div id="S6.SS5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, to actually modify the original variable, we can pass by pointer or pass by reference.</p>
+</div>
+<div id="S6.SS5.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">A reference must be initialized by a variable, and cannot be changed to refer to another variable.
+If you use &amp; operator on a reference, you will get the address of the variable it refers to.</p>
+</div>
+<div id="S6.SS5.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">For example, a swap function can be implemented as follows:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void swap(int &amp;a, int &amp;b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+</pre>
+</div>
+<div id="S6.SS5.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">However, if you write the function like above, you lose the ability to auto-convert.
+But you can explicitly convert the variable to a reference.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+long a = 0;
+long b = 1;
+swap(a, b);                 // will trigger an error
+swap((int &amp;) a, (int &amp;) b); // correct
+</pre>
+</div>
+<div id="S6.SS5.p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the argument is not a lvalue, you cannot pass by reference.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void modifyReference(int &amp;x) {
+    x = 10;
+}
+
+int main() {
+    modifyReference(5); // 5 is an rvalue, will trigger an error
+}
+</pre>
+</div>
+<div id="S6.SS5.p7" class="ltx_para ltx_noindent">
+<p class="ltx_p">But if you declare the parameter as a const reference, you can pass by rvalue.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void print (const int &amp;x) {
+    cout &lt;&lt; x &lt;&lt; endl;
+}
+
+int main() {
+    print(5); // correct
+}
+</pre>
+</div>
+<div id="S6.SS5.p8" class="ltx_para ltx_noindent">
+<p class="ltx_p">Or you can return a reference from a function.
+This saves the overhead of copying the return value.
+But you should not return a reference to a local variable, because the local variable will be destroyed when the function terminates.
+The more common use case is to return a reference to a parameter.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+// very wrong, c will be a dangling reference
+int &amp; add(int &amp;a, int &amp;b) {
+    int c = a + b;
+    return c;
+}
+</pre>
+</div>
+<section id="S6.SS5.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">6.5.1 </span>Const Reference</h4>
+
+<div id="S6.SS5.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can use const reference to pass by value.
+This will prevent the function from modifying the original variable.</p>
+</div>
+<div id="S6.SS5.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">String type is special, because they are often treated as const char * when passed to a function.
+However, you can also use const string &amp; to pass by value (this accepts both string and const char *).
+But do be careful if you pass a pointer to a single char to such function, because the function will treat it as a string.
+As the single char is not null-terminated, this will cause an error.</p>
+</div>
+<div id="S6.SS5.SSS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">If the return type of a function is a reference, it is a valid lvalue.
+In the case that you don’t want to modify the original variable, you can return a const reference.</p>
+</div>
+</section>
+</section>
+<section id="S6.SS6" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.6 </span>Default Argument</h3>
+
+<div id="S6.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can specify default arguments for a function.
+If you do not pass a value to the argument, the default value will be used.
+A function can have multiple default arguments, but all the default arguments must be added from right to left (the actual argument assignment is from left to right).</p>
+</div>
+<div id="S6.SS6.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you separate the function declaration and definition, you can only specify default arguments in the declaration.
+If you did not specify default arguments in the declaration, the compiler will consider the function as no default arguments.
+If you provide default arguments both in the declaration and definition, you will get an error.</p>
+</div>
+</section>
+<section id="S6.SS7" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.7 </span>Function Overloading</h3>
+
+<div id="S6.SS7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Function overloading is a feature that allows us to have more than one function with the same name, as long as they have different parameters.
+The compiler will perform type conversion to determine which function to call.</p>
+</div>
+<div id="S6.SS7.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed, most of the time, reference type and normal type are considered the same.
+But if a conversion is performed before passing the argument, the compiler will invoke the normal type function.
+This also works when you directly provide a value in the function call.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void print(int &amp;x) {
+    cout &lt;&lt; "int &amp;" &lt;&lt; endl;
+}
+void print(int x) {
+    cout &lt;&lt; "int" &lt;&lt; endl;
+}
+
+int main() {
+    long a = 0;
+    print(a); // will print "int"
+    print(1); // will print "int"
+}
+</pre>
+</div>
+<div id="S6.SS7.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Also, function with pointer and const pointer are considered overloaded.
+If you do so, any pointer points to a const variable will go to the const pointer function, and the rest will go to the pointer function.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+void print(int *x) {
+    cout &lt;&lt; "int *" &lt;&lt; endl;
+}
+void print(const int *x) {
+    cout &lt;&lt; "const int *" &lt;&lt; endl;
+}
+
+int main() {
+    int a = 0;
+    const int b = 0;
+    print(&amp;a); // will print "int *"
+    print(&amp;b); // will print "const int *"
+}
+</pre>
+</div>
+</section>
+<section id="S6.SS8" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">6.8 </span>Function Template</h3>
+
+<div id="S6.SS8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A function template is a function that can operate with generic types.
+This allows us to create a function template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.
+For example, a function template for swapping two variables can be implemented as follows:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+template &lt;typename T&gt;
+void swap(T &amp;a, T &amp;b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
+</pre>
+</div>
+<div id="S6.SS8.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can specialize a function template for a specific type.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+template &lt;&gt;
+void swap&lt;int&gt;(int &amp;a, int &amp;b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+</pre>
+</div>
+<div id="S6.SS8.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">A specialized template will override the original template.
+And a normal function will override both the template and the specialized template.</p>
+</div>
+</section>
+</section>
+<section id="S7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">7 </span>Duration, Scope, and Linkage</h2>
+
+<div id="S7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A typical structure for a C++ program consists of three parts: A header file, a source file, and a main file.</p>
+</div>
+<div id="S7.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Common header files include:</p>
+<ul id="S7.I1" class="ltx_itemize">
+<li id="S7.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Function prototypes</p>
+</div>
+</li>
+<li id="S7.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Constant definitions</p>
+</div>
+</li>
+<li id="S7.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Structure declarations</p>
+</div>
+</li>
+<li id="S7.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Class declarations</p>
+</div>
+</li>
+<li id="S7.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Template declarations</p>
+</div>
+</li>
+<li id="S7.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S7.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Inline function definitions</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S7.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Remember to include header file in just one source file.
+If not sure, you can always use guards to prevent multiple inclusion.</p>
+</div>
+<div id="S7.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">Common source files include all other functions and class definitions.
+And the main file is where the main function is defined.</p>
+</div>
+<section id="S7.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.1 </span>Storage</h3>
+
+<section id="S7.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.1.1 </span>Automatic Storage</h4>
+
+<div id="S7.SS1.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Automatic storage is the default storage class for all local variables.
+They are stored in stack, and will be destroyed when the function terminates.</p>
+</div>
+<div id="S7.SS1.SSS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">All automatic variables have automatic storage, local scope, and no linkage.</p>
+</div>
+</section>
+<section id="S7.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.1.2 </span>Static Storage</h4>
+
+<div id="S7.SS1.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Static storage is used to store variables that exist throughout the lifetime of the program.</p>
+</div>
+<div id="S7.SS1.SSS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A no linkage static storage variable is only visible within the block or function.
+The only way to declare a no linkage static storage variable is to declare a static variable inside a function.
+This will make the variable visible throughout the function, but not outside the function.</p>
+</div>
+<div id="S7.SS1.SSS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">An external linkage static storage variable is visible throughout all files.
+When you declare a static variable outside any function, the variable will be visible throughout the file.
+However, in other files, you must declare the variable as <span class="ltx_text ltx_font_typewriter">extern</span> to use it.
+Although the variable has static storage, it doesn’t have to be declared as static (actually if you do so, it will become an internal linkage static storage variable).</p>
+</div>
+<div id="S7.SS1.SSS2.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">An internal linkage static storage variable is visible throughout the file.
+You can declare the variable as <span class="ltx_text ltx_font_typewriter">static</span> to make it an internal linkage static storage variable.</p>
+</div>
+</section>
+<section id="S7.SS1.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.1.3 </span>Dynamic Storage</h4>
+
+<div id="S7.SS1.SSS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Dynamic storage is used to store variables that are created by <span class="ltx_text ltx_font_typewriter">new</span> operator.
+They are stored in heap, and will exist until you delete them.</p>
+</div>
+</section>
+</section>
+<section id="S7.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.2 </span>Scope and Linkage</h3>
+
+<section id="S7.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.2.1 </span>Scope</h4>
+
+<div id="S7.SS2.SSS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The scope of a variable is the part of the program where the variable can be directly accessed.</p>
+<ol id="S7.I2" class="ltx_enumerate">
+<li id="S7.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S7.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Local Scope: Only visible within the block.</p>
+</div>
+</li>
+<li id="S7.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S7.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Global Scope: Visible once declared until the end of the file.</p>
+</div>
+</li>
+<li id="S7.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S7.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Function Prototype Scope: Visible within the parentheses of the function prototype.</p>
+</div>
+</li>
+<li id="S7.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S7.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Class Scope</p>
+</div>
+</li>
+<li id="S7.I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S7.I2.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Namespace Scope</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<section id="S7.SS2.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection">7.2.2 </span>Linkage</h4>
+
+<div id="S7.SS2.SSS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The linkage of a variable is the part of the program where the variable can be indirectly accessed.</p>
+<ol id="S7.I3" class="ltx_enumerate">
+<li id="S7.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S7.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">No Linkage: Only visible within the block or function.</p>
+</div>
+</li>
+<li id="S7.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S7.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Internal Linkage: Only in the same file.</p>
+</div>
+</li>
+<li id="S7.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S7.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">External Linkage: Shared across multiple files.</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+</section>
+<section id="S7.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">7.3 </span>About Function</h3>
+
+<div id="S7.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">All functions automatically have external linkage.
+If you want to make a function private to a file, you can declare it as <span class="ltx_text ltx_font_typewriter">static</span>.</p>
+</div>
+</section>
+</section>
+<section id="S8" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">8 </span>Namespace</h2>
+
+<div id="S8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A namespace is a declarative region that provides a scope to the identifiers (the names of types, functions, variables, etc) inside it.
+Multiple namespace blocks with the same name are allowed.</p>
+</div>
+<div id="S8.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A namesapce cannot be declared inside a block.
+All name declarations have external linkage by default.</p>
+</div>
+<div id="S8.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">A global variable (a variable that is not declared inside any function) is in the global namespace.</p>
+</div>
+</section>
+<section id="S9" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">9 </span>Class</h2>
+
+<section id="S9.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.1 </span>Access Control</h3>
+
+<div id="S9.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A class has three access specifiers: <span class="ltx_text ltx_font_typewriter">public</span>, <span class="ltx_text ltx_font_typewriter">private</span>, and <span class="ltx_text ltx_font_typewriter">protected</span>.
+The default access specifier is <span class="ltx_text ltx_font_typewriter">private</span>.</p>
+</div>
+</section>
+<section id="S9.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.2 </span>Inline Member Function</h3>
+
+<div id="S9.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A member function defined inside a class declaration is implicitly an inline function.
+However, you can make a member function explicitly inline by using the <span class="ltx_text ltx_font_typewriter">inline</span> keyword.</p>
+</div>
+</section>
+<section id="S9.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.3 </span>Constructor</h3>
+
+<div id="S9.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A constructor is a special member function that is called when an object is created.
+It is used to initialize the object’s data members.</p>
+</div>
+<div id="S9.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A constructor has the same name as the class, and it does not have a return type.
+A default constructor is provided by the compiler if you do not define any constructor, which has no parameters and does nothing.
+To be noticed, to invoke the default constructor, you must not use parentheses (this will be considered as a function declaration).</p>
+</div>
+<div id="S9.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Once you define a constructor, the compiler will not provide a default constructor.</p>
+</div>
+</section>
+<section id="S9.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.4 </span>Destructor</h3>
+
+<div id="S9.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A destructor is a special member function that is called when an object is destroyed.
+It is used to free the object’s resources.
+It takes no parameters and has no return type.
+Its name is the class name preceded by a tilde (<span class="ltx_text ltx_font_typewriter">~</span>).</p>
+</div>
+<div id="S9.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A destructor should free memory especially when you dynamically allocate memory in the constructor.
+Moreover, if you dynamically allocate memory in the constructor, you should also define a copy constructor and an assignment operator.
+If class inherits from another class, you should also define a virtual destructor.</p>
+</div>
+</section>
+<section id="S9.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.5 </span>Const Member Function</h3>
+
+<div id="S9.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A const member function is a member function that promises not to modify the object.</p>
+</div>
+</section>
+<section id="S9.SS6" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.6 </span>This Pointer</h3>
+
+<div id="S9.SS6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">The <span class="ltx_text ltx_font_typewriter">this</span> pointer is a pointer that points to the object itself.
+Its most common use is to resolve name conflicts between class members and function parameters.
+Another use is to return a reference or a pointer to the object itself.</p>
+</div>
+</section>
+<section id="S9.SS7" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.7 </span>Enum Class</h3>
+
+<div id="S9.SS7.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">An enum class is a scoped enumeration that is strongly typed.
+The member names of an enum class cannot be implicitly converted to integers.
+To declare an enum class, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+enum class Color {
+    RED,
+    GREEN,
+    BLUE
+};
+</pre>
+</div>
+</section>
+<section id="S9.SS8" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.8 </span>Const Member</h3>
+
+<div id="S9.SS8.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can declare a member variable as <span class="ltx_text ltx_font_typewriter">const</span>.
+But this cannot be used to initialize other member variables.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    const int size = 10;
+    int a[size]; // will trigger an error
+};
+</pre>
+</div>
+<div id="S9.SS8.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To assign value to a const member variable in function body is not allowed, just like any other const variable.
+If you want to initialize a const member variable, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    const int size;
+public:
+    A(int size) : size(size) {}
+};
+</pre>
+</div>
+<div id="S9.SS8.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">You can use enum type or static const member variable to initialize other member variables.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    enum {size = 10};
+    int a[size];
+};
+class B {
+    static const int size = 10;
+    int a[size];
+};
+</pre>
+</div>
+</section>
+<section id="S9.SS9" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.9 </span>Static Member</h3>
+
+<div id="S9.SS9.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A static member variable is a variable that is shared by all objects of the class.
+It must be initialized outside the class.</p>
+</div>
+</section>
+<section id="S9.SS10" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.10 </span>Const Member Function</h3>
+
+<div id="S9.SS10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A const member function is a member function that promises not to modify the object.
+It can only call other const member functions.</p>
+</div>
+<div id="S9.SS10.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A const variable can only call const member functions.
+</p>
+</div>
+</section>
+<section id="S9.SS11" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.11 </span>Static Member Function</h3>
+
+<div id="S9.SS11.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A static member function is a member function that is shared by all objects of the class.
+It can be called without an object, by using the class name and the scope resolution operator.
+But accessing it like a normal function is also allowed.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    static int a;
+public:
+    static void print() {
+        cout &lt;&lt; a &lt;&lt; endl;
+    }
+};
+int A::a = 0;
+int main() {
+    A::print();
+    A a;
+    a.print();
+}
+</pre>
+</div>
+</section>
+<section id="S9.SS12" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">9.12 </span>Copy Constructor</h3>
+
+<div id="S9.SS12.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A copy constructor is a constructor that creates an object by copying another object.
+It is used to initialize an object with another object of the same type.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    int a;
+public:
+    A(int a) : a(a) {}
+    A(const A &amp;a) : a(a.a) {}
+};
+</pre>
+</div>
+<div id="S9.SS12.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">The copy constructor is provided by the compiler if you do not define any constructor.
+However, it just does a shallow copy, this will cause error if you dynamically allocate memory in the constructor.
+Because two pointers will point to the same memory location, and when one of them is destroyed, the other one will become a dangling pointer.
+Also, if you have a counter in the class, you should also define a copy constructor.</p>
+</div>
+</section>
+</section>
+<section id="S10" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">10 </span>Operator Overloading</h2>
+
+<div id="S10.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A class can overload most operators.
+However, some operators cannot be overloaded:</p>
+<ul id="S10.I1" class="ltx_itemize">
+<li id="S10.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">::</span> (scope resolution operator)</p>
+</div>
+</li>
+<li id="S10.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">.</span> (member access operator)</p>
+</div>
+</li>
+<li id="S10.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">.*</span> (member access through pointer to member operator)
+</p>
+</div>
+</li>
+<li id="S10.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">?:</span> (ternary operator)</p>
+</div>
+</li>
+<li id="S10.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">sizeof</span> (object size operator)</p>
+</div>
+</li>
+<li id="S10.I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I1.i6.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">typeid</span> (object type operator)</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S10.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Also, all castings cannot be overloaded:</p>
+<ul id="S10.I2" class="ltx_itemize">
+<li id="S10.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">static_cast</span></p>
+</div>
+</li>
+<li id="S10.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">dynamic_cast</span></p>
+</div>
+</li>
+<li id="S10.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I2.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">const_cast</span></p>
+</div>
+</li>
+<li id="S10.I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S10.I2.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">reinterpret_cast</span></p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S10.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">The overloaded operators can be called explicitly or implicitly.
+For example, the <span class="ltx_text ltx_font_typewriter">operator+()</span> function can be called explicitly as <span class="ltx_text ltx_font_typewriter">a.operator+(b)</span> or implicitly as <span class="ltx_text ltx_font_typewriter">a + b</span>.</p>
+</div>
+<section id="S10.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.1 </span>Overloading Binary Operators</h3>
+
+<div id="S10.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Since the function call is always on the left, the left operand of a binary operator must be an object of the class.
+However, if you want to overload a binary operator with a built-in type on the left, you must declare the function as a friend function.</p>
+</div>
+<div id="S10.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A friend function, although declared inside the class, is not a member function.
+This means any instance of the class cannot directly invoke the friend function, instead, the function is automatically called when the binary operator is used.</p>
+</div>
+<div id="S10.SS1.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed that the order of the operands matters.
+If the order is reversed, the compiler will not be able to find the function.</p>
+</div>
+</section>
+<section id="S10.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.2 </span>Conversion</h3>
+
+<div id="S10.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you don’t use the <span class="ltx_text ltx_font_typewriter">explicit</span> keyword, constructor of the class can be used for implicit conversion.
+This is troublesome as you often don’t know when the compiler will use the constructor.</p>
+</div>
+<div id="S10.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To convert a class into another type, you can overload the cast operator.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    int a;
+public:
+    A(int a) : a(a) {}
+    operator int() {
+        return a;
+    }
+};
+</pre>
+</div>
+<div id="S10.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Notice that there is no return type for the cast operator.
+You can also use the <span class="ltx_text ltx_font_typewriter">explicit</span> keyword to prevent implicit conversion.</p>
+</div>
+</section>
+<section id="S10.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">10.3 </span>Assignment Operator</h3>
+
+<div id="S10.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">You need to overload the assignment operator if you dynamically allocate memory in the constructor.
+Different from a copy constructor, the assignment operator is called when the object already exists, hence there is no need to update the counter.
+Also, you need to delete the content of the object before assigning a new value to it.
+Remember to check if the object is the same as the one on the right side of the assignment operator.</p>
+</div>
+</section>
+</section>
+<section id="S11" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">11 </span>Inheritance</h2>
+
+<div id="S11.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When using inheritance, you can use relaxed access control.
+For pointers and references, a base class pointer or reference can point to a derived class object, but not vice versa.
+This is because the derived class object has more members than the base class object.</p>
+</div>
+<div id="S11.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">A pointer or reference used in this way has two behaviors: static type and dynamic type.
+If the function is not virtual, the pointer or reference will call the function of its type.
+If the function is virtual, the pointer or reference will call the function of the object’s type.</p>
+</div>
+<section id="S11.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">11.1 </span>Public Inheritance</h3>
+
+<div id="S11.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Public inheritance shapes is-a relationship.
+In public inheritance, the public members of the base class become public members of the derived class.
+The protected members of the base class become protected members of the derived class.
+The private members of the base class are not accessible by the derived class.</p>
+</div>
+</section>
+<section id="S11.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">11.2 </span>Private Inheritance</h3>
+
+<div id="S11.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Private inheritance shapes has-a relationship.
+All members of the base class become private members of the derived class.</p>
+</div>
+<div id="S11.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you use private inheritance, you must access the member through type name.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A : private std::string {
+    A (const std::string &amp;s) : std::string(s) {}
+    void print() {
+        std::cout &lt;&lt; std::string::size() &lt;&lt; std::endl;
+    }
+};
+</pre>
+</div>
+<div id="S11.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you want to use the member itself, you need to cast the object to the base class.
+For example:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A : private std::string {
+    A (const std::string &amp;s) : std::string(s) {}
+    void print_content() {
+        std::cout &lt;&lt; (std::string) *this &lt;&lt; std::endl; // or cast to a reference
+    }
+};
+</pre>
+</div>
+</section>
+</section>
+<section id="S12" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">12 </span>Class Template</h2>
+
+<div id="S12.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A class template is a class that can operate with generic types.
+This allows us to create a class template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.</p>
+</div>
+</section>
+<section id="S13" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">13 </span>Friend Class</h2>
+
+<div id="S13.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A friend class is a class that can access the private and protected members of another class.
+To declare a friend class, you can use the following syntax:</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+class A {
+    friend class B;
+};
+</pre>
+</div>
+<div id="S13.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">In this way, all members of class B can access the private and protected members of class A.
+But class A cannot access the private and protected members of class B.</p>
+</div>
+<div id="S13.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Friend class is not symmetric, not transitive, and not inherited.</p>
+</div>
+</section>
+<section id="S14" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">14 </span>Exception</h2>
+
+<div id="S14.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When an exception is thrown, the program will jump to the nearest catch block.
+If not, this is call the function <span class="ltx_text ltx_font_typewriter">abort()</span> and terminate the program.</p>
+</div>
+<div id="S14.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, a catch clause can catch more than just exception, it can also catch any type.
+</p>
+</div>
+<div id="S14.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">In a catch chain, the matching will be executed from top to bottom.
+Hence, considering inheritance of exception, you should put the catch clause of the derived class before the catch clause of the base class.</p>
+</div>
+</section>
+<section id="S15" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">15 </span>RTTI</h2>
+
+<div id="S15.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, up-casting is safe and can be done implicitly.
+But down-casting is not safe.
+We have to use <span class="ltx_text ltx_font_typewriter">dynamic_cast</span> to perform down-casting.</p>
+</div>
+<div id="S15.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you try to down-cast a pointer to a base class to a pointer to a derived class, and the pointer does not point to a derived class, the result will be a <span class="ltx_text ltx_font_typewriter">nullptr</span>.
+If you try to down-cast a reference to a base class to a reference to a derived class, and the reference does not refer to a derived class, the result will be a <span class="ltx_text ltx_font_typewriter">bad_cast</span> exception.</p>
+</div>
+<div id="S15.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">To find the true type of an object, you can use <span class="ltx_text ltx_font_typewriter">typeid</span> operator.
+Remember if you want to apply this to a pointer, you need to dereference it first.
+Otherwise you will get the type of the pointer itself.</p>
+</div>
+<div class="ltx_pagination ltx_role_newpage"></div>
+</section>
+<section id="S16" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">16 </span>Lab Review</h2>
+
+<section id="S16.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">16.1 </span>Scanf and Printf with Format Specifiers</h3>
+
+<figure id="S16.T3" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">Type</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Format Specifier</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">short</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%hd</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">int</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%d</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%ld</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long long</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%lld</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">float</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%f</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">double</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%lf</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">long double</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%Lf</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">char</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%c</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">string</span></td>
+<td class="ltx_td ltx_align_center ltx_border_r ltx_border_t">%s</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t"><span class="ltx_text ltx_font_bold">pointer</span></td>
+<td class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">%p</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 3: </span>Scanf and Printf with Format Specifiers</figcaption>
+</figure>
+<div id="S16.SS1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you want the unsigned version of the integer types, simply replace <span class="ltx_text ltx_font_typewriter">d</span> with <span class="ltx_text ltx_font_typewriter">u</span>.</p>
+</div>
+<div id="S16.SS1.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">To be noticed, the <span class="ltx_text ltx_font_typewriter">sizeof</span> operator returns in long type.</p>
+</div>
+</section>
+<section id="S16.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">16.2 </span>IOS Manipulators</h3>
+
+<div id="S16.SS2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">setw</span> is used to set the width of the next output.
+You can use it with <span class="ltx_text ltx_font_typewriter">setfill</span> to set the fill character.</p>
+</div>
+<div id="S16.SS2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">percision</span> is used to set the percision of the next output.
+This will round the number instead of truncating it.</p>
+</div>
+<div id="S16.SS2.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">Some other useful manipulators are:</p>
+<ul id="S16.I1" class="ltx_itemize">
+<li id="S16.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I1.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">hex</span>, <span class="ltx_text ltx_font_typewriter">oct</span>, <span class="ltx_text ltx_font_typewriter">dec</span>: change the base of the next output.</p>
+</div>
+</li>
+<li id="S16.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I1.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">fixed</span>: output the number in fixed-point notation.</p>
+</div>
+</li>
+<li id="S16.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I1.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">boolalpha</span>: output the boolean value as <span class="ltx_text ltx_font_typewriter">true</span> or <span class="ltx_text ltx_font_typewriter">false</span>.</p>
+</div>
+</li>
+<li id="S16.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I1.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">showpoint</span>: always show the decimal point.</p>
+</div>
+</li>
+<li id="S16.I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I1.i5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">left</span>, <span class="ltx_text ltx_font_typewriter">right</span>: align the output to the left or right.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S16.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">16.3 </span>String</h3>
+
+<div id="S16.SS3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you use C-style string, there are two ways to get the length of the string:
+</p>
+<ol id="S16.I2" class="ltx_enumerate">
+<li id="S16.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S16.I2.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Use <span class="ltx_text ltx_font_typewriter">strlen</span> function (might not work if the string is not null-terminated).</p>
+</div>
+</li>
+<li id="S16.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S16.I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">Use <span class="ltx_text ltx_font_typewriter">sizeof</span> operator (this will include the null character).</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S16.SS3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you use <span class="ltx_text ltx_font_typewriter">string</span> class, you can use <span class="ltx_text ltx_font_typewriter">.size()</span> or <span class="ltx_text ltx_font_typewriter">.length()</span> method to get the length of the string.
+However, using <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on a <span class="ltx_text ltx_font_typewriter">string</span> object will return the size of the object (which is 32), not the length of the string.</p>
+</div>
+<div id="S16.SS3.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">It is particularly troublesome to input a string with spaces.</p>
+</div>
+<div id="S16.SS3.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C, we use <span class="ltx_text ltx_font_typewriter">gets</span> and <span class="ltx_text ltx_font_typewriter">puts</span> function.
+This works with a char array, and it does not include the newline character.
+To be noticed that it may input a string without a null character, if the input is the same length as the array.</p>
+</div>
+<div id="S16.SS3.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, we use <span class="ltx_text ltx_font_typewriter">get</span> and <span class="ltx_text ltx_font_typewriter">getline</span> function.
+When using <span class="ltx_text ltx_font_typewriter">get</span> function, it requires two parameters: the first is a char array, and the second is the size of the array.
+This will always include a null character even if the input is longer than the array.
+You can use a <span class="ltx_text ltx_font_typewriter">get</span> with no parameter to remove the newline character from the input stream (since <span class="ltx_text ltx_font_typewriter">get</span> will stop at the newline character).
+When using <span class="ltx_text ltx_font_typewriter">getline</span> function, the parameters are the same as <span class="ltx_text ltx_font_typewriter">get</span> function, but it will remove the newline character from the input stream automatically.</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+char a[10];
+cin.get(a, 10);
+cin.get();          // remove the newline character
+cin.getline(a, 10); // no need to remove the newline character
+</pre>
+</div>
+<div id="S16.SS3.p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">When dealing with string class object, we use <span class="ltx_text ltx_font_typewriter">getline</span> a little differently.</p>
+<pre class="ltx_verbatim ltx_font_typewriter">
+string a;
+getline(cin, a);
+</pre>
+</div>
+</section>
+<section id="S16.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">16.4 </span>Union and Endianness</h3>
+
+<div id="S16.SS4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">A union is a compound data type that allows you to store different data types in the same memory location.
+All members are aligned to the same memory location.
+But only one member can contain a value at any given time.
+The other members will be overwritten, and if you try to access them, their value will depend on the endianness of the computer.</p>
+</div>
+<div id="S16.SS4.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Big-endian means that the most significant byte is stored at the lowest memory address.
+Little-endian means that the least significant byte is stored at the lowest memory address.</p>
+</div>
+</section>
+<section id="S16.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">16.5 </span>Pointer</h3>
+
+<div id="S16.SS5.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p">If you apply <span class="ltx_text ltx_font_typewriter">sizeof</span> operator on a pointer, it will return the size of a pointer (4 or 8), not the size of the array.</p>
+</div>
+<div id="S16.SS5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p">Notice that a char variable’s address cannot be directly printed with &amp; operator, you need to cast it to a <span class="ltx_text ltx_font_typewriter">void*</span> first.</p>
+</div>
+<div id="S16.SS5.p3" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C, there are four functions to dynamically allocate memory:</p>
+<ul id="S16.I3" class="ltx_itemize">
+<li id="S16.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I3.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">void* calloc(size_t num, size_t size)</span>: allocate memory for an array of <span class="ltx_text ltx_font_typewriter">num</span> elements, each of them <span class="ltx_text ltx_font_typewriter">size</span> bytes long, and initializes all bits to zero.</p>
+</div>
+</li>
+<li id="S16.I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I3.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">void* malloc(size_t size)</span>: allocate memory block of <span class="ltx_text ltx_font_typewriter">size</span> bytes.</p>
+</div>
+</li>
+<li id="S16.I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I3.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">void* realloc(void* ptr, size_t size)</span>: reallocates memory extending it up to <span class="ltx_text ltx_font_typewriter">size</span> bytes.</p>
+</div>
+</li>
+<li id="S16.I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I3.i4.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">void free(void* ptr)</span>: deallocate the memory previously allocated by a call to <span class="ltx_text ltx_font_typewriter">calloc</span>, <span class="ltx_text ltx_font_typewriter">malloc</span>, or <span class="ltx_text ltx_font_typewriter">realloc</span>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S16.SS5.p4" class="ltx_para ltx_noindent">
+<p class="ltx_p">In C++, it is recommended to use <span class="ltx_text ltx_font_typewriter">new</span> and <span class="ltx_text ltx_font_typewriter">delete</span> operator instead.</p>
+</div>
+<div id="S16.SS5.p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">The name of an array is actually a pointer of one rank lower.
+For example, the name of a one dimensional array is a pointer, the name of a two dimensional array is a pointer to a one dimensional array, and so on.
+Here are some useful pointer arithmetic with array.
+For one dimensional array:</p>
+<ul id="S16.I4" class="ltx_itemize">
+<li id="S16.I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I4.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">p + 1</span>: points to the second element of the array.</p>
+</div>
+</li>
+<li id="S16.I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I4.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">&amp;p + 1</span>: points to the address after the array.</p>
+</div>
+</li>
+<li id="S16.I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I4.i3.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">*p + 1</span>: equivalent to <span class="ltx_text ltx_font_typewriter">p[0] + 1</span>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S16.SS5.p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">For two dimensional array:</p>
+<ul id="S16.I5" class="ltx_itemize">
+<li id="S16.I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I5.i1.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">p + 1</span>: points to the second row of the array (remember <span class="ltx_text ltx_font_typewriter">p</span> is a pointer to array and points to the first row).</p>
+</div>
+</li>
+<li id="S16.I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S16.I5.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_typewriter">*(p + 1)</span>: if you try to dereference <span class="ltx_text ltx_font_typewriter">p + 1</span>, you will get the second row of the array.
+However, this decays to a pointer to int, which points to the first element of the second row.
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S16.SS5.p7" class="ltx_para ltx_noindent">
+<p class="ltx_p">When you mix pointer arithmetic with increment and decrement, you should be noticed that the dereference operator has a lower precedence than the increment and decrement operator.
+For example <span class="ltx_text ltx_font_typewriter">*p++</span> is equivalent to <span class="ltx_text ltx_font_typewriter">*(p++)</span>.</p>
+</div>
+</section>
+</section>
+</article>
+</div>
+</div>
+</body>
+</html>
