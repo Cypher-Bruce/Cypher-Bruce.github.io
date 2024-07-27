@@ -12,7 +12,7 @@ I am a sophomore at Southern University of Science and Technology (SUSTech), maj
 
 I am also a member of Turing class, which is a top-notch class for computer science students at SUSTech.
 
-## Research Interests
+## Experience
 
 Currently, I have some experience in the following areas:
 
